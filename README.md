@@ -1,5 +1,5 @@
 # broadboards
-A social media web application that aims to break down echo chambers while still enabling users to discuss their interests.
+A forum-based social media solution to echo chambers and other social media-based problems.
 
 ### License
 This project is licensed under the MIT License. For more information, please refer to LICENSE.

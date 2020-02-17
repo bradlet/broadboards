@@ -11,10 +11,55 @@
 #B0C6CE
 */
 
+/* followed this guide to maintain the footer at the bottom:
+https://www.youtube.com/watch?time_continue=142&v=qlCIXXhSX6Y&feature=emb_logo
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#full-page {
+  min-height: 100%;
+}
+
+#content {
+  overflow: auto;
+  padding-bottom: 40px;
+}
+
+#footer {
+  background-color: #e3f2fd;
+  position: relative;
+  height: 40px;
+  margin-top: -40px;
+  clear: both;
+}
+
+#primary-header {
+  background-color: #e3f2fd;
+  height: 80px;
+}
+
+#secondary-header {
+  background-color: #e3f2fd;
+  height: 40px;
+}
+
 /* // Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
   .navbar-form input[type="text"] {
     width: 10vw !important;
+  }
+
+  #group-settings {
+    display: hide;
   }
 }
 
@@ -23,12 +68,18 @@
   .navbar-form input[type="text"] {
     width: 24vw !important;
   }
+  #group-settings {
+    display: block;
+  }
 }
 
 /* // Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .navbar-form input[type="text"] {
     width: 40vw !important;
+  }
+  #group-settings {
+    display: block;
   }
 }
 

@@ -25,9 +25,10 @@
   </head>
 
   <body>
+    <div id="full-page">
+      <div id="content">
     <nav
-      class="navbar navbar-light"
-      style="background-color: #e3f2fd; height: 80px;"
+      id="primary-header" class="navbar navbar-light"
     >
       <div class="container-fluid">
         <div class="navbar-header">
@@ -83,8 +84,9 @@
         <div class="row">
           <div class="col-md-8">
             <nav
+              id="secondary-header"
               class="navbar navbar-light"
-              style="background-color: #e3f2fd; height: 40px;"
+
             >
               <div class="container-fluid">
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -150,8 +152,11 @@
                 </ul>
               </div>
             </nav>
+            <container>
+              <p>This is where the forum posts will appear</p>
+            </container>
           </div>
-          <div class="col-md-4">
+          <div id="group-settings" class="col-md-4">
             <ul>
               This is an example of side menu options
               <li>
@@ -172,8 +177,12 @@
       </div>
     </section>
 
-    <section></section>
 
-    <footer>This is a footer Copyright 2020</footer>
+
+
+      </div>
+    </div>
+
+    <footer id="footer">This is a footer Copyright 2020</footer>
   </body>
 </html>

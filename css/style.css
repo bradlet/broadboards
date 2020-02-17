@@ -52,14 +52,24 @@ body {
   height: 40px;
 }
 
+@media only screen and (max-width: 992px) {
+  #group-settings {
+    display: none;
+  }
+  #login {
+    display: none;
+  }
+  #sign-up {
+    display: none;
+  }
+}
+
 /* // Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
   .navbar-form input[type="text"] {
     width: 10vw !important;
   }
-
-  #group-settings {
-    display: hide;
+  #forum-feed {
   }
 }
 
@@ -68,18 +78,12 @@ body {
   .navbar-form input[type="text"] {
     width: 24vw !important;
   }
-  #group-settings {
-    display: block;
-  }
 }
 
 /* // Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .navbar-form input[type="text"] {
     width: 40vw !important;
-  }
-  #group-settings {
-    display: block;
   }
 }
 

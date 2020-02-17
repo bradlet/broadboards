@@ -1,0 +1,40 @@
+/* original logo colors
+#0192C9
+#81D8DF
+*/
+
+/* first test color scheme
+#D7FDEC
+#424B54
+#2B4162
+#FF6B35
+#B0C6CE
+*/
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .navbar-form input[type="text"] {
+    width: 10vw !important;
+  }
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .navbar-form input[type="text"] {
+    width: 24vw !important;
+  }
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .navbar-form input[type="text"] {
+    width: 40vw !important;
+  }
+}
+
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .navbar-form input[type="text"] {
+    width: 50vw !important;
+  }
+}

@@ -34,6 +34,8 @@ body {
   padding-bottom: 40px;
 }
 
+/* Hides the side bar if the screen gets to small */
+/* Also hides a couple icons in the main header */
 @media only screen and (max-width: 992px) {
   #group-settings {
     display: none;
@@ -46,6 +48,7 @@ body {
   }
 }
 
+/* Modifies the logo size for the main header */
 @media only screen and (max-width: 768px) {
   #logo {
     width: 25px;
@@ -53,7 +56,7 @@ body {
   }
 }
 
-/* // Medium devices (tablets, 768px and up) */
+/* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .navbar-form input[type="text"] {
     width: 50vw !important;
@@ -63,7 +66,7 @@ body {
   }
 }
 
-/* // Large devices (desktops, 992px and up) */
+/* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .navbar-form input[type="text"] {
     width: 55vw !important;
@@ -73,7 +76,7 @@ body {
   }
 }
 
-/* // Extra large devices (large desktops, 1200px and up) */
+/* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   .navbar-form input[type="text"] {
     width: 65vw !important;
@@ -151,6 +154,7 @@ body.light-mode .icon-bar {
 }
 /* end of Light-mode values */
 
+/* to give the search bar a searching graphic */
 .form-group input {
   font-family: FontAwesome;
 }

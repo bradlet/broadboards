@@ -34,24 +34,6 @@ body {
   padding-bottom: 40px;
 }
 
-#footer {
-  background-color: #e3f2fd;
-  position: relative;
-  height: 40px;
-  margin-top: -40px;
-  clear: both;
-}
-
-#primary-header {
-  background-color: #e3f2fd;
-  height: 80px;
-}
-
-#secondary-header {
-  background-color: #e3f2fd;
-  height: 40px;
-}
-
 @media only screen and (max-width: 992px) {
   #group-settings {
     display: none;
@@ -64,32 +46,111 @@ body {
   }
 }
 
-/* // Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-  .navbar-form input[type="text"] {
-    width: 10vw !important;
-  }
-  #forum-feed {
+@media only screen and (max-width: 768px) {
+  #logo {
+    width: 25px;
+    height: 25px;
   }
 }
 
 /* // Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .navbar-form input[type="text"] {
-    width: 24vw !important;
+    width: 50vw !important;
+  }
+  #primary-header {
+    height: 80px;
   }
 }
 
 /* // Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .navbar-form input[type="text"] {
-    width: 40vw !important;
+    width: 55vw !important;
+  }
+  #primary-header {
+    height: 80px;
   }
 }
 
 /* // Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   .navbar-form input[type="text"] {
-    width: 50vw !important;
+    width: 65vw !important;
   }
+  #primary-header {
+    height: 80px;
+  }
+}
+
+/* Borrowed from some of this example for dark mode:
+https://codepen.io/ckchoudek/pen/bKVJrO
+*/
+
+/* Dark Mode values */
+body.dark-mode {
+  background-color: #303030;
+  color: #fff;
+}
+body.dark-mode a {
+  color: #303030;
+}
+body.dark-mode button {
+  background-color: #303030;
+  color: #fff;
+}
+body.dark-mode #footer {
+  background-color: #555555;
+  position: relative;
+  height: 40px;
+  margin-top: -40px;
+  clear: both;
+}
+body.dark-mode #primary-header {
+  background-color: #555555;
+}
+body.dark-mode #secondary-header {
+  background-color: #555555;
+}
+body.dark-mode input {
+  background-color: #303030;
+  color: #fff;
+}
+body.dark-mode .icon-bar {
+  background-color: #fff;
+}
+/* end of Dark-Mode values */
+
+/* Light-Mode values */
+body.light-mode {
+  background-color: #fff;
+  color: #303030;
+}
+body.light-mode a {
+  color: #303030;
+}
+body.light-mode button {
+  background-color: #fff;
+  color: #23272a;
+}
+body.light-mode #footer {
+  background-color: #e3f2fd;
+  position: relative;
+  height: 40px;
+  margin-top: -40px;
+  clear: both;
+}
+body.light-mode #primary-header {
+  background-color: #e3f2fd;
+}
+body.light-mode #secondary-header {
+  background-color: #e3f2fd;
+}
+body.light-mode .icon-bar {
+  background-color: #303030;
+}
+/* end of Light-mode values */
+
+.form-group input {
+  font-family: FontAwesome;
 }

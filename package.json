@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/bradlet/broadboards/issues"
   },
-  "homepage": "https://github.com/bradlet/broadboards#readme"
+  "homepage": "https://github.com/bradlet/broadboards#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

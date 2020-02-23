@@ -15,6 +15,12 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/', (req, res) => {
 	// serve public/index.html
 	res.sendFile(path.join(__dirname + '/public/index.html'));
+app.post("/submit", function(req, res){
+  console.log('@ app.post')
+  // get username from the HTML form via request body
+  var username = req.body.username;
+  console.log(username)
+  res.redirect("/")
 });
 
 app.listen(5000);

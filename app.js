@@ -14,8 +14,10 @@ let db = new sqlite3.Database(':memory:', (err) => {
 	console.log('Created users table')
 });
 
+app.engine('html', require('ejs').renderFile);
+
 // serve public/ content as static
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
 // built-in middleware function to parse req/res
 app.use(express.json());

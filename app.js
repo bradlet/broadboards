@@ -69,4 +69,25 @@ getUsers = (callback) => {
 	});
 };
 
+// creates a dictionary to fill embedded
+// JavaScript templates in public/index.html
+createDict = (users) => {
+	console.log('@ createDict')
+
+	// default dictionary
+	let dict = {user1:null, user2:null, user3:null, user4:null}
+	// if DB doesn't contain entries, return default dictionary
+	if (users === undefined || users.length == 0) {
+		return dict
+	}
+
+	// fill the dictionary up to 4 entries maximum
+	for (i = 0; i < users.length && i < 4; i++) {
+		dict['user'+(i+1)] = users[i]
+	}
+	// console.log('returning: '+ dict)
+	// console.info(dict)
+	return dict
+};
+
 app.listen(5000);

@@ -40,4 +40,25 @@ app.post("/submit", function(req, res){
 	res.redirect("/")
 });
 
+// stores usernames retrieved from
+// the database into a list and returns it
+// to a callback function
+getUsers = (callback) => {
+	console.log('@ getUsers')
+	let users=[];
+
+	let getUsersStatement =  `SELECT user FROM users`;
+	db.all(getUsersStatement, [], (err, rows) => {
+		if (err) {
+			return console.error(err.message);
+		}
+		// for every row in the database, store it in the users list
+		rows.forEach((row) => {users.push(row.user)});
+
+		// once the database retrieves all users asynchronously
+		// it passes the users list into a callback function
+		callback(users)
+	});
+};
+
 app.listen(5000);

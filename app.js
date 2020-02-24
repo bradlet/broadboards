@@ -29,10 +29,20 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/', (req, res) => {
 	// serve public/index.html
 	//res.sendFile(path.join(__dirname + '/public/index.html'));
-	users = getUsers(createDict)
-	//createDict(users)
-	res.render(__dirname + "/public/index.html",
-		{user1:null, user2:null, user3:null, user4:null});
+	let dict = {}
+	// a callback after the database reach function end point
+	// any additions to the database will be reflected using ejs
+	users = getUsers((users) => {
+		// console.info(users)
+		dict = createDict(users)
+		// console.info(dict)
+		res.render(__dirname + "/public/index.html",
+			dict);
+	});
+
+	// console.log('in / : ' + JSON.stringify(dict))
+	// res.render(__dirname + "/public/index.html",
+	// 	{user1:null, user2:null, user3:null, user4:null});
 });
 
 app.post("/submit", function(req, res){

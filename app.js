@@ -1,6 +1,18 @@
+//using SQlite3 in debug/verbose mode
+const sqlite3 = require('sqlite3').verbose();
 //using node express
 const express = require('express');
 const app = express();
+
+// open connection to SQlite using temporary/memory only mode
+let db = new sqlite3.Database(':memory:', (err) => {
+	if (err) {
+		return console.error(err.message);
+	}
+	console.log('Connected to the in-memory SQlite database.');
+	db.run("CREATE TABLE users (user TEXT)");
+	console.log('Created users table')
+});
 
 // serve public/ content as static
 app.use(express.static('public'));

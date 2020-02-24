@@ -28,7 +28,13 @@ app.use(express.urlencoded({ extended: false }));
 // route to homepage
 app.get('/', (req, res) => {
 	// serve public/index.html
-	res.sendFile(path.join(__dirname + '/public/index.html'));
+	//res.sendFile(path.join(__dirname + '/public/index.html'));
+	users = getUsers(createDict)
+	//createDict(users)
+	res.render(__dirname + "/public/index.html",
+		{user1:null, user2:null, user3:null, user4:null});
+});
+
 app.post("/submit", function(req, res){
 	console.log('@ app.post')
 

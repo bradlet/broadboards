@@ -24,11 +24,176 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <!-- Bootstrap dependence -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
     <title>React App</title>
   </head>
   <body>
+    <body id="body" class="light-mode">
+      <div id="full-page">
+          <div id="content">
+  
+              <!-- Primary Navigation Bar -->
+              <nav id="primary-header" class="navbar navbar-light">
+                  <div class="container-fluid">
+  
+                      <div class="navbar-header">
+                          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                          </button>
+                          <a class="navbar-brand" href="#"><img id="logo" src="img/bb.png" width="50px" height="50px" /></a>
+  
+                          <form class="navbar-form navbar-left" action="">
+                              <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="&#xf002 Search a thing" />
+                              </div>
+                          </form>
+  
+                      </div>
+  
+                      <div class="collapse navbar-collapse" id="myNavbar">
+  
+                          <ul class="nav navbar-nav navbar-right">
+                              <li>
+                                  <a href="#"><span id="login" class="glyphicon glyphicon-user"></span>
+                      <b>Login</b> or</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><span
+                        id="sign-up"
+                        class="glyphicon glyphicon-log-in"
+                      ></span>
+                      Sign Up!</a
+                    >
+                  </li>
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                      >Profile <span class="caret"></span
+                    ></a>
+                                  <ul class="dropdown-menu">
+                                      <li>
+                                          <button type="button" name="dark_light" onclick="toggleDarkMode()" title="Toggle dark-mode">
+                                              Dark-mode
+                                          </button>
+                                      </li>
+                                      <li><a href="#">profile</a></li>
+                                      <li><a href="#">messages</a></li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </div>
+  
+                  </div>
+          </div>
+          </nav>
+          <!-- End of Primary Navigation Bar -->
+  
+          <section>
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-8">
+                          <!-- Secondary Navigation Bar -->
+                          <div id="secondary-header" class="navbar navbar-light">
+                              <div class="container-fluid">
+                                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#secondNav">
+                                      <span class="icon-bar"></span>
+                                      <span class="icon-bar"></span>
+                                      <span class="icon-bar"></span>
+                                  </button>
+  
+                                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                      <label class="btn btn-secondary active">
+                                          <input type="radio" name="sort-order" id="pop" autocomplete="off" checked /> Popular
+                                      </label>
+                                      <label class="btn btn-secondary">
+                                          <input type="radio" name="sort-order" id="new" autocomplete="off" /> New
+                                      </label>
+                                      <label class="btn btn-secondary">
+                                          <input type="radio" name="sort-order" id="top" autocomplete="off" /> Top
+                                      </label>
+                                      <label class="btn btn-secondary">
+                                          <input type="radio" name="sort-order" id="trend" autocomplete="off" /> Trending
+                                      </label>
+                                  </div>
+  
+                                  <ul class="nav navbar-nav navbar-right">
+                                      <li class="nav-item dropdown">
+  
+                                          <a id="navbardrop" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                      Grid
+                      <span class="caret"></span></a>
+  
+                                          <ul class="dropdown-menu">
+                                              <li>
+                                                  <i class="fa fa-grip-lines" style="color: #0192C9;"></i>
+                                              </li>
+                                              <li><i class="fa fa-bars" style="color: #0192C9;"></i></li>
+                                              <li><i class="fa fa-align-justify" style="color: #0192C9;"></i></li>
+                                              <li><i class="fa fa-th-large" style="color: #0192C9;"></i></li>
+                                          </ul>
+  
+                                      </li>
+                                  </ul>
+  
+                              </div>
+                          </div>
+                          <!-- End of Secondary Navigation Bar -->
+  
+                          <!-- Forum Feed -->
+                          <container id="forum-feed">
+                              <p>This is where the forum posts will appear</p>
+                              <div id="root"></div>
+                          </container>
+                          <!-- End of Forum Feed -->
+                      </div>
+  
+                      <!-- Right Side Bar -->
+                      <div id="group-settings" class="col-md-4">
+                          <ul>
+                              This is an example of side menu info
+                              <li>
+                                  item1
+                              </li>
+                              <li>
+                                  item2
+                              </li>
+                              <li>
+                                  item3
+                              </li>
+                              <li>
+                                  item4
+                              </li>
+                          </ul>
+                      </div>
+                      <!-- End of the Right Side Bar -->
+                  </div>
+              </div>
+          </section>
+      </div>
+      </div>
+      <footer id="footer">This is a footer Copyright 2020</footer>
+
+
+
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -40,4 +205,5 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script src="js/bb.js"></script>
 </html>

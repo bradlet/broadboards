@@ -1,0 +1,29 @@
+{
+  "name": "broadboards",
+  "version": "0.1.0",
+  "description": "A forum-based social media solution to echo chambers and other social media-based problems.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bradlet/broadboards.git"
+  },
+  "keywords": [
+    "forum",
+    "thread",
+    "generic-forum-thread",
+    "social-media"
+  ],
+  "author": "Suliman Alsarraf, Bradley Thompson, Christioher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bradlet/broadboards/issues"
+  },
+  "homepage": "https://github.com/bradlet/broadboards#readme"
+}

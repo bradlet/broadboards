@@ -20,9 +20,14 @@ class App extends React.Component {
     items: Array.from({ length: 10 })
   };
 
+  test = () => {
+    this.callBackendAPI()
+      .then(res => res)
+  }
   // We will need to alter this to handle
   // db requests for threads to feed
   fetchMoreData = () => {
+    test()
     setTimeout(() => {
       this.setState({
         items: this.state.items.concat(Array.from({ length: 20 }))
@@ -30,7 +35,19 @@ class App extends React.Component {
     }, 1500);
   };
 
+  callBackendAPI = async () => {
+    const response = await fetch('/express_backend');
+    console.log(response)
+    const body = await response.json();
+    console.log(body)
+
+    if (response.status !== 200) {
+      throw Error(body.message)
+    }
+    return body;
+  };
   render() {
+    this.test()
     return (
       <div>
         This is where forum posts populate

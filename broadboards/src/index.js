@@ -16,18 +16,33 @@ const style = {
 
 class App extends React.Component {
   // this will need to be changed for the threads
-  state = {
-    items: Array.from({ length: 10 })
+  fetchThreads = async () => {
+    const response = await fetch('/express_backend');
+    // console.log(response)
+    const body = await response.json();
+    // console.log(body)
+
+    if (response.status !== 200) {
+      throw Error(body.message)
+    }
+    return body;
   };
 
-  test = () => {
-    this.callBackendAPI()
-      .then(res => res)
+  componentDidMount() {
+      // Call our fetch function below once the component mounts
+    this.fetchThreads()
+      .then(res => this.setState({ items: res}))
+      .catch(err => console.log(err));
   }
+
+  state = {
+    items: []
+    // items: Array.from({ length: 10 })
+  };
+
   // We will need to alter this to handle
   // db requests for threads to feed
   fetchMoreData = () => {
-    test()
     setTimeout(() => {
       this.setState({
         items: this.state.items.concat(Array.from({ length: 20 }))
@@ -35,32 +50,23 @@ class App extends React.Component {
     }, 1500);
   };
 
-  callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
-    console.log(response)
-    const body = await response.json();
-    console.log(body)
-
-    if (response.status !== 200) {
-      throw Error(body.message)
-    }
-    return body;
-  };
   render() {
-    this.test()
     return (
       <div>
         This is where forum posts populate
         <hr />
         <InfiniteScroll
-          dataLength={this.state.items.length}
+          dataLength={() => {
+            this.componentDidMount()
+              .then(res => this.state.items.length)}
+          }
           next={this.fetchMoreData}
           hasMore={true}
           loader={<h4>Loading...</h4>}
         >
           {this.state.items.map((i, index) => (
-            <div style={style} key={index}>
-              This is a single thread #{index}
+            <div style={style} key={i}>
+              #{i}
             </div>
           ))}
         </InfiniteScroll>

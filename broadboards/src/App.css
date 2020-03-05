@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.post {
+  height: 30;
+  border: 1px solid grey;
+  margin: 6px;
+  padding: 8px;
+  background-color: grey;
+};

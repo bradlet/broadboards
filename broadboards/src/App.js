@@ -1,24 +1,66 @@
 import React from "react";
-import logo from "./logo.svg";
+import InfiniteScroll from "react-infinite-scroll-component";
 import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+class App extends React.Component {
+  // this will need to be changed for the threads
+  fetchThreads = async () => {
+    const response = await fetch('/express_backend');
+    // console.log(response)
+    const body = await response.json();
+    // console.log(body)
+
+    if (response.status !== 200) {
+      throw Error(body.message)
+    }
+    return body;
+  };
+
+  componentDidMount() {
+      // Call our fetch function below once the component mounts
+    this.fetchThreads()
+      .then(res => this.setState({ items: res}))
+      .catch(err => console.log(err));
+  }
+
+  state = {
+    items: []
+    // items: Array.from({ length: 10 })
+  };
+
+  // We will need to alter this to handle
+  // db requests for threads to feed
+  fetchMoreData = () => {
+    setTimeout(() => {
+      this.setState({
+        items: this.state.items.concat(Array.from({ length: 20 }))
+      });
+    }, 1500);
+  };
+
+  render() {
+    return (
+      <div>
+        This is where forum posts populate
+        <hr />
+        <InfiniteScroll
+          dataLength={() => {
+            this.componentDidMount()
+              .then(res => this.state.items.length)}
+          }
+          next={this.fetchMoreData}
+          hasMore={true}
+          loader={<h4>Loading...</h4>}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          {this.state.items.map((i, index) => (
+            <div class="post" key={i}>
+              #{i}
+            </div>
+          ))}
+        </InfiniteScroll>
+      </div>
+    );
+  }
 }
+
+export default App;

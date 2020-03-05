@@ -5,21 +5,21 @@ import "./App.css";
 class App extends React.Component {
   // this will need to be changed for the threads
   fetchThreads = async () => {
-    const response = await fetch('/express_backend');
+    const response = await fetch("/express_backend");
     // console.log(response)
     const body = await response.json();
     // console.log(body)
 
     if (response.status !== 200) {
-      throw Error(body.message)
+      throw Error(body.message);
     }
     return body;
   };
 
   componentDidMount() {
-      // Call our fetch function below once the component mounts
+    // Call our fetch function below once the component mounts
     this.fetchThreads()
-      .then(res => this.setState({ items: res}))
+      .then(res => this.setState({ items: res }))
       .catch(err => console.log(err));
   }
 
@@ -45,9 +45,8 @@ class App extends React.Component {
         <hr />
         <InfiniteScroll
           dataLength={() => {
-            this.componentDidMount()
-              .then(res => this.state.items.length)}
-          }
+            this.componentDidMount().then(res => this.state.items.length);
+          }}
           next={this.fetchMoreData}
           hasMore={true}
           loader={<h4>Loading...</h4>}
@@ -58,6 +57,57 @@ class App extends React.Component {
             </div>
           ))}
         </InfiniteScroll>
+      </div>
+    );
+  }
+}
+
+class NewThread extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      NewThreadVisible: false,
+      submitted: false
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+      submitted: true
+    });
+
+    this.setState(revert => ({
+      NewThreadVisible: !revert.NewThreadVisible
+    }));
+  }
+
+  render() {
+    return (
+      <div
+        ref={node => {
+          this.node = node;
+        }}
+      >
+        <button onClick={this.handleClick}>Create a post</button>
+        {this.state.NewThreadVisible && (
+          <form action="new_thread" method="post">
+            <div>
+              <input type="text" name="title" required></input>
+              <label for="title">Title</label>
+            </div>
+            <div>
+              <textarea type="text" name="message" required></textarea>
+              <label for="message">Comments</label>
+            </div>
+            <div>
+              <button onClick={this.handleClick} type="submit">
+                Post it!
+              </button>
+            </div>
+          </form>
+        )}
+        <br />
       </div>
     );
   }

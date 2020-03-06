@@ -67,3 +67,24 @@ app.get('/getThreadCount', (req, res) => {
     .catch(err => console.log(err))
 });
 
+app.get('/getRollingThreads/:numOfThreads/:totalThreads/:skipThreads', (req, res) => {
+  console.log('@ getRollingThreads')
+  startingNumOfThreads = req.params['numOfThreads']
+  skipThreads = req.params['skipThreads']
+  total = req.params['totalThreads']
+  skipBy = total - skipThreads
+  // console.log('skipThreads: ' + skipThreads)
+  // console.log('total: ' + total)
+
+  query = 'SELECT * FROM testThreads WHERE ID <= ' + skipBy + ' ORDER BY ID desc ' + 'LIMIT ' + startingNumOfThreads;
+  client
+    .query(query)
+    .then(results => {
+      // console.log(results.rows)
+      results = results.rows
+      results = results.map(entry => entry['thread'].replace(/\s+$/, ''))
+      res.send(results)
+      return results
+    })
+    .catch(err => console.log(err))
+});

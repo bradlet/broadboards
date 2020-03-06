@@ -2,10 +2,15 @@ import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./App.css";
 
+// API routes
+const getThreadsAPI = '/getThreads'
+const threadCountAPI = '/getThreadCount'
+
 class App extends React.Component {
   // this will need to be changed for the threads
   fetchThreads = async () => {
-    const response = await fetch('/getThreads');
+    const response = await fetch(getThreadsAPI+
+      '/1');
     // console.log(response)
     const body = await response.json();
     // console.log(body)
@@ -17,7 +22,7 @@ class App extends React.Component {
   };
 
   fetchThreadCount = async() => {
-    const response = await fetch('/getThreadCount');
+    const response = await fetch(threadCountAPI);
     // console.log(response)
     const body = await response.json();
     // console.log(body)

@@ -92,6 +92,12 @@ class App extends React.Component {
     }, 1500);
   };
 
+  hasMore = () => {
+    console.log('in hasMore')
+    if (this.state.remainingThreads > 0) return true;
+    else return false
+  };
+
   render() {
     return (
       <div>
@@ -102,8 +108,8 @@ class App extends React.Component {
             this.componentDidMount()
               .then(res => this.state.threads.length)}
           }
-          hasMore={true}
           next={this.fetchMoreThreads}
+          hasMore={this.hasMore()}
           loader={<h4>Loading...</h4>}
         >
           {this.state.threads.map((i, index) => (

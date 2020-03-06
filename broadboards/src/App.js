@@ -4,6 +4,7 @@ import "./App.css";
 
 // API routes
 const getThreadsAPI = '/getThreads'
+const getRollingThreadsAPI = '/getRollingThreads'
 const threadCountAPI = '/getThreadCount'
 
 // control starting # of threads
@@ -26,6 +27,20 @@ class App extends React.Component {
 
   fetchThreadCount = async() => {
     const response = await fetch(threadCountAPI);
+    // console.log(response)
+    const body = await response.json();
+    // console.log(body)
+
+    if (response.status !== 200) {
+      throw Error(body.message)
+    }
+    return body;
+  };
+
+  fetchRollingThreads = async () => {
+    const response = await fetch(getRollingThreadsAPI+
+      '/'+startingNumOfThreads+'/'+this.state.threadCount+'/'+
+      (this.state.currentDisplayedThreads));
     // console.log(response)
     const body = await response.json();
     // console.log(body)

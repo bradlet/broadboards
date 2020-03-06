@@ -31,6 +31,10 @@ class NewThread extends React.Component {
         {this.state.NewThreadVisible && (
           <form action="new_thread" method="post">
             <div>
+              <input type="text" name="user" required></input>
+              <label for="user">User</label>
+            </div>
+            <div>
               <input type="text" name="title" required></input>
               <label for="title">Title</label>
             </div>

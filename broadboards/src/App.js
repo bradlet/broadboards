@@ -45,7 +45,8 @@ class App extends React.Component {
       .then(res => {
         this.setState({
           threads: res,
-          currentDisplayedThreads: startingNumOfThreads
+          currentDisplayedThreads: res.length,
+          remainingThreads: this.state.threadCount - res.length
         })
     })
       .catch(err => console.log(err));

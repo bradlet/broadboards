@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
 const { Pool, Client } = require('pg')
+const path = require('path')
 
 const client = new Client({
   user: 'test',
@@ -14,6 +15,12 @@ client.connect()
 
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+app.use(express.static(path.join(__dirname, 'broadboards/build')))
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname + '/broadboards/build/index.html'))
+})
 
 // create a GET route
 app.get('/express_backend', (req, res) => {

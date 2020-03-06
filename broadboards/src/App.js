@@ -34,12 +34,12 @@ class App extends React.Component {
       .catch(err => console.log(err));
     // Call our fetch function below once the component mounts
     this.fetchThreads()
-      .then(res => this.setState({ items: res}))
+      .then(res => this.setState({ threads: res}))
       .catch(err => console.log(err));
   }
 
   state = {
-    items: []
+    threads: [],
     threadCount: 0
     // items: Array.from({ length: 10 })
   };
@@ -49,7 +49,7 @@ class App extends React.Component {
   fetchMoreData = () => {
     setTimeout(() => {
       this.setState({
-        items: this.state.items.concat(Array.from({ length: 20 }))
+        threads: this.state.threads.concat(Array.from({ length: 20 }))
       });
     }, 1500);
   };
@@ -62,13 +62,13 @@ class App extends React.Component {
         <InfiniteScroll
           dataLength={() => {
             this.componentDidMount()
-              .then(res => this.state.items.length)}
+              .then(res => this.state.threads.length)}
           }
           next={this.fetchMoreData}
           hasMore={true}
           loader={<h4>Loading...</h4>}
         >
-          {this.state.items.map((i, index) => (
+          {this.state.threads.map((i, index) => (
             <div className="post" key={i}>
               #{i}
             </div>

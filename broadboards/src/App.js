@@ -53,7 +53,7 @@ class App extends React.Component {
           loader={<h4>Loading...</h4>}
         >
           {this.state.items.map((i, index) => (
-            <div class="post" key={i}>
+            <div className="post" key={i}>
               #{i}
             </div>
           ))}

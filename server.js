@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 })
 
 // create a GET route
-app.get('/express_backend', (req, res) => {
+app.get('/getThreads', (req, res) => {
   console.log('@ get')
   query = 'SELECT * FROM testThreads ';
   // client.query(query, (err, res) => {

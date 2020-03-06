@@ -5,7 +5,7 @@ import "./App.css";
 class App extends React.Component {
   // this will need to be changed for the threads
   fetchThreads = async () => {
-    const response = await fetch('/express_backend');
+    const response = await fetch('/getThreads');
     // console.log(response)
     const body = await response.json();
     // console.log(body)

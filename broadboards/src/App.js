@@ -6,11 +6,14 @@ import "./App.css";
 const getThreadsAPI = '/getThreads'
 const threadCountAPI = '/getThreadCount'
 
+// control starting # of threads
+const startingNumOfThreads = 10;
+
 class App extends React.Component {
   // this will need to be changed for the threads
   fetchThreads = async () => {
     const response = await fetch(getThreadsAPI+
-      '/1');
+      '/'+startingNumOfThreads);
     // console.log(response)
     const body = await response.json();
     // console.log(body)

@@ -27,7 +27,9 @@ app.get('/getThreads/:numOfThreads', (req, res) => {
   console.log('@ getThreads')
   startingNumOfThreads = req.params['numOfThreads']
   //console.log(startingNumOfThreads)
-  query = 'SELECT * FROM testThreads LIMIT ' + startingNumOfThreads;
+  query = 'SELECT * FROM testThreads ORDER BY ID desc ' +
+  'LIMIT ' + startingNumOfThreads;
+
   // client.query(query, (err, res) => {
   //   // console.log(res.rows)
   //   results = res.rows

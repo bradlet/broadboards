@@ -25,8 +25,9 @@ app.get('/', (req, res) => {
 // create a GET route
 app.get('/getThreads/:numOfThreads', (req, res) => {
   console.log('@ getThreads')
-  // console.log(req.params['numOfThreads'])
-  query = 'SELECT * FROM testThreads ';
+  startingNumOfThreads = req.params['numOfThreads']
+  //console.log(startingNumOfThreads)
+  query = 'SELECT * FROM testThreads LIMIT ' + startingNumOfThreads;
   // client.query(query, (err, res) => {
   //   // console.log(res.rows)
   //   results = res.rows

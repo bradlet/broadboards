@@ -74,12 +74,20 @@ class App extends React.Component {
     // items: Array.from({ length: 10 })
   };
 
-  // We will need to alter this to handle
-  // db requests for threads to feed
-  fetchMoreData = () => {
+  fetchMoreThreads = () => {
+    // console.log('in fetchMore')
     setTimeout(() => {
-      this.setState({
-        threads: this.state.threads.concat(Array.from({ length: 20 }))
+      this.fetchRollingThreads()
+        .then(res => {
+          console.log(res)
+          this.setState({
+            currentDisplayedThreads:
+            this.state.currentDisplayedThreads + res.length,
+            remainingThreads: this.state.remainingThreads - res.length,
+            threads: this.state.threads.concat(res)
+          })
+      // this.setState({
+      //   threads: this.state.threads.concat(res)
       });
     }, 1500);
   };
@@ -94,8 +102,8 @@ class App extends React.Component {
             this.componentDidMount()
               .then(res => this.state.threads.length)}
           }
-          next={this.fetchMoreData}
           hasMore={true}
+          next={this.fetchMoreThreads}
           loader={<h4>Loading...</h4>}
         >
           {this.state.threads.map((i, index) => (

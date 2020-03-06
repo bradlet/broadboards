@@ -16,6 +16,18 @@ class App extends React.Component {
     return body;
   };
 
+  fetchThreadCount = async() => {
+    const response = await fetch('/getThreadCount');
+    // console.log(response)
+    const body = await response.json();
+    // console.log(body)
+
+    if (response.status !== 200) {
+      throw Error(body.message)
+    }
+    return body;
+  };
+
   componentDidMount() {
       // Call our fetch function below once the component mounts
     this.fetchThreads()

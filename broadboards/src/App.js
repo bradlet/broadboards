@@ -42,13 +42,19 @@ class App extends React.Component {
       .catch(err => console.log(err));
     // Call our fetch function below once the component mounts
     this.fetchThreads()
-      .then(res => this.setState({ threads: res}))
+      .then(res => {
+        this.setState({
+          threads: res,
+          currentDisplayedThreads: startingNumOfThreads
+        })
+    })
       .catch(err => console.log(err));
   }
 
   state = {
     threads: [],
-    threadCount: 0
+    threadCount: 0,
+    currentDisplayedThreads: 0
     // items: Array.from({ length: 10 })
   };
 

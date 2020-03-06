@@ -47,5 +47,19 @@ app.get('/getThreads', (req, res) => {
   	})
   	// .then(data => console.log(data))
   	.catch(err => console.log(err))
-  //res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
+
+app.get('/getThreadCount', (req, res) => {
+  console.log('@ getThreadCount')
+  query = 'SELECT COUNT(*) FROM testThreads ';
+
+  client
+    .query(query)
+    .then(results => {
+      results = results.rows[0]['count']
+      res.send(results)
+      return results
+    })
+    .catch(err => console.log(err))
+});
+

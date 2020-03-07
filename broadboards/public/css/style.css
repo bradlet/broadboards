@@ -46,6 +46,13 @@ body {
   #sign-up {
     display: none;
   }
+  #brand-name {
+    visibility: visible;
+    text-align: center;
+    line-height: 1cm;
+    font-weight: bold;
+    color: #0192c9;
+  }
 }
 
 /* Modifies the logo size for the main header */
@@ -54,15 +61,25 @@ body {
     width: 25px;
     height: 25px;
   }
+  #brand-name {
+    visibility: visible;
+    text-align: center;
+    line-height: 1cm;
+    font-weight: bold;
+    color: #0192c9;
+  }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .navbar-form input[type="text"] {
-    width: 50vw !important;
+    width: 48vw !important;
   }
   #primary-header {
     height: 80px;
+  }
+  #brand-name {
+    display: none;
   }
 }
 
@@ -74,6 +91,9 @@ body {
   #primary-header {
     height: 80px;
   }
+  #brand-name {
+    display: none;
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -83,6 +103,9 @@ body {
   }
   #primary-header {
     height: 80px;
+  }
+  #brand-name {
+    display: none;
   }
 }
 
@@ -122,6 +145,11 @@ body.dark-mode input {
 body.dark-mode .icon-bar {
   background-color: #fff;
 }
+
+.navbar-nav > li > .dropdown-menu {
+  background-color: #354038;
+  color: #fff;
+}
 /* end of Dark-Mode values */
 
 /* Light-Mode values */
@@ -151,6 +179,11 @@ body.light-mode #secondary-header {
 }
 body.light-mode .icon-bar {
   background-color: #354038;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  background-color: #fff;
+  color: #303030;
 }
 /* end of Light-mode values */
 

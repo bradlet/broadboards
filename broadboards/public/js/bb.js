@@ -1,13 +1,13 @@
 function toggleDarkMode() {
-    var body = document.getElementById("body");
-    var currentClass = body.className;
-    var image = document.getElementById("logo");
-  
-    if (currentClass == "dark-mode") {
-      image.src = "img/bb.png";
-      body.className = "light-mode";
-    } else {
-      image.src = "img/bb-dark.png";
-      body.className = "dark-mode";
-    }
+  var body = document.getElementById("body");
+  var currentClass = body.className;
+  var button = document.getElementById("dark-button");
+
+  if (currentClass == "dark-mode") {
+    button.src = "fa fa-toggle-on";
+    body.className = "light-mode";
+  } else {
+    button.src = "fa fa-toggle-off";
+    body.className = "dark-mode";
   }
+}

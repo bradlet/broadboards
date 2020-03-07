@@ -16,145 +16,235 @@ https://www.youtube.com/watch?time_continue=142&v=qlCIXXhSX6Y&feature=emb_logo
 */
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#full-page {
+  min-height: 100%;
+}
+
+#content {
+  overflow: auto;
+  padding-bottom: 40px;
+}
+
+/* Hides the side bar if the screen gets to small */
+/* Also hides a couple icons in the main header */
+@media only screen and (max-width: 992px) {
+  #group-settings {
+    display: none;
   }
-  
-  html,
-  body {
-    height: 100%;
+  #login {
+    display: none;
   }
-  
-  #full-page {
-    min-height: 100%;
+  #sign-up {
+    display: none;
   }
-  
-  #content {
-    overflow: auto;
-    padding-bottom: 40px;
+  #brand-name {
+    visibility: visible;
+    text-align: center;
+    line-height: 1cm;
+    font-weight: bold;
+    color: #0192c9;
   }
-  
-  /* Hides the side bar if the screen gets to small */
-  /* Also hides a couple icons in the main header */
-  @media only screen and (max-width: 992px) {
-    #group-settings {
-      display: none;
-    }
-    #login {
-      display: none;
-    }
-    #sign-up {
-      display: none;
-    }
+}
+
+/* Modifies the logo size for the main header */
+@media only screen and (max-width: 768px) {
+  #logo {
+    width: 25px;
+    height: 25px;
   }
-  
-  /* Modifies the logo size for the main header */
-  @media only screen and (max-width: 768px) {
-    #logo {
-      width: 25px;
-      height: 25px;
-    }
+  #brand-name {
+    visibility: visible;
+    text-align: center;
+    line-height: 1cm;
+    font-weight: bold;
+    color: #0192c9;
   }
-  
-  /* Medium devices (tablets, 768px and up) */
-  @media (min-width: 768px) {
-    .navbar-form input[type="text"] {
-      width: 50vw !important;
-    }
-    #primary-header {
-      height: 80px;
-    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .navbar-form input[type="text"] {
+    width: 48vw !important;
   }
-  
-  /* Large devices (desktops, 992px and up) */
-  @media (min-width: 992px) {
-    .navbar-form input[type="text"] {
-      width: 55vw !important;
-    }
-    #primary-header {
-      height: 80px;
-    }
+  #primary-header {
+    height: 80px;
   }
-  
-  /* Extra large devices (large desktops, 1200px and up) */
-  @media (min-width: 1200px) {
-    .navbar-form input[type="text"] {
-      width: 65vw !important;
-    }
-    #primary-header {
-      height: 80px;
-    }
+  #brand-name {
+    display: none;
   }
-  
-  /* Borrowed from some of this example for dark mode:
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .navbar-form input[type="text"] {
+    width: 55vw !important;
+  }
+  #primary-header {
+    height: 80px;
+  }
+  #brand-name {
+    display: none;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .navbar-form input[type="text"] {
+    width: 64vw !important;
+  }
+  #primary-header {
+    height: 80px;
+  }
+  #brand-name {
+    display: none;
+  }
+}
+
+/* Borrowed from some of this example for dark mode:
   https://codepen.io/ckchoudek/pen/bKVJrO
   */
-  
-  /* Dark Mode values */
-  body.dark-mode {
-    background-color: #303030;
-    color: #fff;
-  }
-  body.dark-mode a {
-    color: #303030;
-  }
-  body.dark-mode button {
-    background-color: #303030;
-    color: #fff;
-  }
-  body.dark-mode #footer {
-    background-color: #555555;
-    position: relative;
-    height: 40px;
-    margin-top: -40px;
-    clear: both;
-  }
-  body.dark-mode #primary-header {
-    background-color: #555555;
-  }
-  body.dark-mode #secondary-header {
-    background-color: #555555;
-  }
-  body.dark-mode input {
-    background-color: #303030;
-    color: #fff;
-  }
-  body.dark-mode .icon-bar {
-    background-color: #fff;
-  }
-  /* end of Dark-Mode values */
-  
-  /* Light-Mode values */
-  body.light-mode {
-    background-color: #fff;
-    color: #303030;
-  }
-  body.light-mode a {
-    color: #303030;
-  }
-  body.light-mode button {
-    background-color: #fff;
-    color: #23272a;
-  }
-  body.light-mode #footer {
-    background-color: #e3f2fd;
-    position: relative;
-    height: 40px;
-    margin-top: -40px;
-    clear: both;
-  }
-  body.light-mode #primary-header {
-    background-color: #e3f2fd;
-  }
-  body.light-mode #secondary-header {
-    background-color: #e3f2fd;
-  }
-  body.light-mode .icon-bar {
-    background-color: #303030;
-  }
-  /* end of Light-mode values */
-  
-  /* to give the search bar a searching graphic */
-  .form-group input {
-    font-family: FontAwesome;
-  }
+
+/* Dark Mode values */
+body.dark-mode {
+  background-color: #242728;
+  color: #fff;
+}
+body.dark-mode a {
+  color: #fff;
+}
+body.dark-mode button {
+  background-color: #242728;
+  color: #fff;
+}
+body.dark-mode #footer {
+  background-color: #313335;
+  position: relative;
+  height: 40px;
+  margin-top: -40px;
+  clear: both;
+}
+body.dark-mode #primary-header {
+  background-color: #313335;
+}
+body.dark-mode #secondary-header {
+  background-color: #313335;
+}
+body.dark-mode input {
+  background-color: #242728;
+  color: #fff;
+}
+body.dark-mode .icon-bar {
+  background-color: #fff;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  background-color: #242728;
+  color: #fff;
+}
+/* end of Dark-Mode values */
+
+/* Light-Mode values */
+body.light-mode {
+  background-color: #fff;
+  color: #303030;
+}
+body.light-mode a {
+  color: #303030;
+}
+body.light-mode button {
+  background-color: #fff;
+  color: #23272a;
+}
+body.light-mode #footer {
+  background-color: #e3f2fd;
+  position: relative;
+  height: 40px;
+  margin-top: -40px;
+  clear: both;
+}
+body.light-mode #primary-header {
+  background-color: #e3f2fd;
+}
+body.light-mode #secondary-header {
+  background-color: #e3f2fd;
+}
+body.light-mode .icon-bar {
+  background-color: #354038;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  background-color: #fff;
+  color: #303030;
+}
+/* end of Light-mode values */
+
+/* to give the search bar a searching graphic */
+.form-group input {
+  font-family: FontAwesome;
+}
+
+/* Dark-mode switch values
+Original idea from:
+https://codepen.io/vahidvb/pen/QWbgbWZ?editors=1100
+*/
+.switch {
+  display: flex;
+}
+/* Hide the original switch */
+.switch input {
+  display: none;
+}
+.switch .switch-text {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.switch input:checked + span:before {
+  background-color: rgba(1, 146, 201, 0.6);
+}
+/* move left, change color */
+.switch input:checked + span:after {
+  background-color: #0192c9;
+  left: 0.9em;
+}
+/* background bar */
+.switch .switch-field {
+  width: 2.5em;
+  position: relative;
+}
+/* switch transition settings */
+.switch .switch-field:before,
+.switch .switch-field:after {
+  content: "";
+  position: absolute;
+  transition: all 0.2s linear;
+}
+/* background bar values */
+.switch .switch-field:before {
+  height: 0.5em;
+  border-radius: 0.25em;
+  background-color: rgba(129, 216, 223, 0.8);
+  width: 70%;
+  left: 5%;
+  top: 0.25em;
+}
+/* forground switch values */
+.switch .switch-field:after {
+  width: 1em;
+  height: 1em;
+  top: 0;
+  left: 0;
+  background-color: #0192c9;
+  border-radius: 100%;
+}
+
+/* End of Dark-mode switch values */

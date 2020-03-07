@@ -12,3 +12,10 @@ Copyright (c) 2020 Bradley Thompson, Chris Teters and Suliman Alsarraf
 - ReactJS
 - NodeJS, ExpressJS
 - PostgreSQL
+
+### Deployment Instructions
+1. Git clone the repository onto whatever box you'll be deploying to.
+2. Run 'npm install' on both the outer (server) and inner (client) directories.
+3. In the inner directory, run 'npm run build'.
+4. In the outer directory run 'npm start'.
+

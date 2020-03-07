@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    <meta name="description" content="Web site created using create-react-app" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -39,174 +37,153 @@
 
 
     <title>React App</title>
-  </head>
-  <body>
-    <body id="body" class="light-mode">
-      <div id="full-page">
-          <div id="content">
+</head>
 
-              <!-- Primary Navigation Bar -->
-              <nav id="primary-header" class="navbar navbar-light">
-                  <div class="container-fluid">
+<body id="body" class="light-mode">
+    <div id="full-page">
+        <div id="content">
 
-                      <div class="navbar-header">
-                          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                          </button>
-                          <a class="navbar-brand" href="#"><img id="logo" src="img/bb.png" width="50px" height="50px" /></a>
-                          <div id="brand-name">Broad Boards</div>
+            <!-- Primary Navigation Bar -->
+            <nav id="primary-header" class="navbar navbar-light">
+                <div class="container-fluid">
 
-                          <form class="navbar-form navbar-left" action="">
-                              <div class="form-group">
-                                  <input type="text" class="form-control" placeholder="&#xf002 Search a thing" />
-                              </div>
-                          </form>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"><img id="logo" src="img/bb.png" width="50px"
+                                height="50px" /></a>
+                        <div id="brand-name">Broad Boards</div>
 
-                      </div>
+                        <form class="navbar-form navbar-left" action="">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="&#xf002 Search a thing" />
+                            </div>
+                        </form>
 
-                      <div class="collapse navbar-collapse" id="myNavbar">
+                    </div>
 
-                          <ul class="nav navbar-nav navbar-right">
-                              <li>
-                                  <a href="#"><span id="login" class="glyphicon glyphicon-user"></span>
-                      <b>Login</b> or</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><span
-                        id="sign-up"
-                        class="glyphicon glyphicon-log-in"
-                      ></span>
-                      Sign Up!</a
-                    >
-                  </li>
-                  <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"
-                      >Profile <span class="caret"></span
-                    ></a>
-                                  <ul class="dropdown-menu">
-                                      <li>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="#"><span id="login" class="glyphicon glyphicon-user"></span>
+                                    <b>Login</b> or</a>
+                            </li>
+                            <li>
+                                <a href="#"><span id="sign-up" class="glyphicon glyphicon-log-in"></span>
+                                    Sign Up!</a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span
+                                        class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>
                                         <label class="switch">
                                             &nbsp&nbsp&nbsp&nbsp Dark-mode &nbsp
                                             <input type="checkbox" name="dark_light" onclick="toggleDarkMode()"
-                                            title="Toggle dark-mode" id= "dark-button" class = "fa fa-toggle-off">
+                                                title="Toggle dark-mode" id="dark-button" class="fa fa-toggle-off">
                                             <span class="switch-field"></span>
-                                          </label>
-                                      </li>
-                                      <li><a href="#">profile</a></li>
-                                      <li><a href="#">messages</a></li>
-                                  </ul>
-                              </li>
-                          </ul>
-                      </div>
+                                        </label>
+                                    </li>
+                                    <li><a href="#">profile</a></li>
+                                    <li><a href="#">messages</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
 
-                  </div>
-          </div>
-          </nav>
-          <!-- End of Primary Navigation Bar -->
+                </div>
+            </nav>
+        </div>
+        <!-- End of Primary Navigation Bar -->
 
-          <section>
-              <div class="container">
-                  <div class="row">
-                      <div class="col-md-8">
-                          <!-- Secondary Navigation Bar -->
-                          <div id="secondary-header" class="navbar navbar-light">
-                              <div class="container-fluid">
-                                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#secondNav">
-                                      <span class="icon-bar"></span>
-                                      <span class="icon-bar"></span>
-                                      <span class="icon-bar"></span>
-                                  </button>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <!-- Secondary Navigation Bar -->
+                        <div id="secondary-header" class="navbar navbar-light">
+                            <div class="container-fluid">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target="#secondNav">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
 
-                                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                      <label class="btn btn-secondary active">
-                                          <input type="radio" name="sort-order" id="pop" autocomplete="off" checked /> Popular
-                                      </label>
-                                      <label class="btn btn-secondary">
-                                          <input type="radio" name="sort-order" id="new" autocomplete="off" /> New
-                                      </label>
-                                      <label class="btn btn-secondary">
-                                          <input type="radio" name="sort-order" id="top" autocomplete="off" /> Top
-                                      </label>
-                                      <label class="btn btn-secondary">
-                                          <input type="radio" name="sort-order" id="trend" autocomplete="off" /> Trending
-                                      </label>
-                                  </div>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-secondary active">
+                                        <input type="radio" name="sort-order" id="pop" autocomplete="off" checked />
+                                        Popular
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="sort-order" id="new" autocomplete="off" /> New
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="sort-order" id="top" autocomplete="off" /> Top
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="sort-order" id="trend" autocomplete="off" /> Trending
+                                    </label>
+                                </div>
 
-                                  <ul class="nav navbar-nav navbar-right">
-                                      <li class="nav-item dropdown">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="nav-item dropdown">
 
-                                          <a id="navbardrop" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                      Grid
-                      <span class="caret"></span></a>
+                                        <a id="navbardrop" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                            Grid
+                                            <span class="caret"></span></a>
 
-                                          <ul class="dropdown-menu">
-                                              <li><i class="fa fa-grip-lines" style="color: #0192C9;"></i></li>
-                                              <li><i class="fa fa-equals" style="color: #0192C9;"></i></li>
-                                              <li><i class="fa fa-bars" style="color: #0192C9;"></i></li>
-                                              <li><i class="fa fa-align-justify" style="color: #0192C9;"></i></li>
-                                              <li><i class="fa fa-th-list" style="color: #0192C9;"></i></li>
-                                          </ul>
+                                        <ul class="dropdown-menu">
+                                            <li><i class="fa fa-grip-lines" style="color: #0192C9;"></i></li>
+                                            <li><i class="fa fa-equals" style="color: #0192C9;"></i></li>
+                                            <li><i class="fa fa-bars" style="color: #0192C9;"></i></li>
+                                            <li><i class="fa fa-align-justify" style="color: #0192C9;"></i></li>
+                                            <li><i class="fa fa-th-list" style="color: #0192C9;"></i></li>
+                                        </ul>
 
-                                      </li>
-                                  </ul>
+                                    </li>
+                                </ul>
 
-                              </div>
-                          </div>
-                          <!-- End of Secondary Navigation Bar -->
+                            </div>
+                        </div>
+                        <!-- End of Secondary Navigation Bar -->
 
-                          <!-- Forum Feed -->
-                          <container id="forum-feed">
-                              <div id="post"></div>
-                              <div id="root"></div>
-                          </container>
-                          <!-- End of Forum Feed -->
-                      </div>
+                        <!-- Forum Feed -->
+                        <container id="forum-feed">
+                            <div id="post"></div>
+                            <div id="root"></div>
+                        </container>
+                        <!-- End of Forum Feed -->
+                    </div>
 
-                      <!-- Right Side Bar -->
-                      <div id="group-settings" class="col-md-4">
-                          <ul>
-                              This is an example of side menu info
-                              <li>
-                                  item1
-                              </li>
-                              <li>
-                                  item2
-                              </li>
-                              <li>
-                                  item3
-                              </li>
-                              <li>
-                                  item4
-                              </li>
-                          </ul>
-                      </div>
-                      <!-- End of the Right Side Bar -->
-                  </div>
-              </div>
-          </section>
-      </div>
-      </div>
+                    <!-- Right Side Bar -->
+                    <div id="group-settings" class="col-md-4">
+                        <ul>
+                            This is an example of side menu info
+                            <li>
+                                item1
+                            </li>
+                            <li>
+                                item2
+                            </li>
+                            <li>
+                                item3
+                            </li>
+                            <li>
+                                item4
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End of the Right Side Bar -->
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="js/bb.js"></script>
+</body>
 
-
-
-
-
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
-  <script src="js/bb.js"></script>
 </html>

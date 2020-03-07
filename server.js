@@ -23,9 +23,13 @@ app.get('/', (req, res) => {
 })
 
 // create a GET route
-app.get('/express_backend', (req, res) => {
-  console.log('@ get')
-  query = 'SELECT * FROM testThreads ';
+app.get('/getThreads/:numOfThreads', (req, res) => {
+  console.log('@ getThreads')
+  startingNumOfThreads = req.params['numOfThreads']
+  //console.log(startingNumOfThreads)
+  query = 'SELECT * FROM testThreads ORDER BY ID desc ' +
+  'LIMIT ' + startingNumOfThreads;
+
   // client.query(query, (err, res) => {
   //   // console.log(res.rows)
   //   results = res.rows
@@ -47,5 +51,40 @@ app.get('/express_backend', (req, res) => {
   	})
   	// .then(data => console.log(data))
   	.catch(err => console.log(err))
-  //res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+});
+
+app.get('/getThreadCount', (req, res) => {
+  console.log('@ getThreadCount')
+  query = 'SELECT COUNT(*) FROM testThreads ';
+
+  client
+    .query(query)
+    .then(results => {
+      results = results.rows[0]['count']
+      res.send(results)
+      return results
+    })
+    .catch(err => console.log(err))
+});
+
+app.get('/getRollingThreads/:numOfThreads/:totalThreads/:skipThreads', (req, res) => {
+  console.log('@ getRollingThreads')
+  startingNumOfThreads = req.params['numOfThreads']
+  skipThreads = req.params['skipThreads']
+  total = req.params['totalThreads']
+  skipBy = total - skipThreads
+  // console.log('skipThreads: ' + skipThreads)
+  // console.log('total: ' + total)
+
+  query = 'SELECT * FROM testThreads WHERE ID <= ' + skipBy + ' ORDER BY ID desc ' + 'LIMIT ' + startingNumOfThreads;
+  client
+    .query(query)
+    .then(results => {
+      // console.log(results.rows)
+      results = results.rows
+      results = results.map(entry => entry['thread'].replace(/\s+$/, ''))
+      res.send(results)
+      return results
+    })
+    .catch(err => console.log(err))
 });

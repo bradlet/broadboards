@@ -191,3 +191,60 @@ body.light-mode .icon-bar {
 .form-group input {
   font-family: FontAwesome;
 }
+
+/* Dark-mode switch values
+Original idea from:
+https://codepen.io/vahidvb/pen/QWbgbWZ?editors=1100
+*/
+.switch {
+  display: flex;
+}
+/* Hide the original switch */
+.switch input {
+  display: none;
+}
+.switch .switch-text {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.switch input:checked + span:before {
+  background-color: rgba(1, 146, 201, 0.6);
+}
+/* move left, change color */
+.switch input:checked + span:after {
+  background-color: #0192c9;
+  left: 0.9em;
+}
+/* background bar */
+.switch .switch-field {
+  width: 2.5em;
+  position: relative;
+}
+/* switch transition settings */
+.switch .switch-field:before,
+.switch .switch-field:after {
+  content: "";
+  position: absolute;
+  transition: all 0.2s linear;
+}
+/* background bar values */
+.switch .switch-field:before {
+  height: 0.5em;
+  border-radius: 0.25em;
+  background-color: rgba(129, 216, 223, 0.8);
+  width: 70%;
+  left: 5%;
+  top: 0.25em;
+}
+/* forground switch values */
+.switch .switch-field:after {
+  width: 1em;
+  height: 1em;
+  top: 0;
+  left: 0;
+  background-color: #0192c9;
+  border-radius: 100%;
+}
+
+/* End of Dark-mode switch values */

@@ -99,7 +99,7 @@ body {
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   .navbar-form input[type="text"] {
-    width: 65vw !important;
+    width: 64vw !important;
   }
   #primary-header {
     height: 80px;
@@ -115,31 +115,31 @@ body {
 
 /* Dark Mode values */
 body.dark-mode {
-  background-color: #354038;
+  background-color: #242728;
   color: #fff;
 }
 body.dark-mode a {
   color: #fff;
 }
 body.dark-mode button {
-  background-color: #354038;
+  background-color: #242728;
   color: #fff;
 }
 body.dark-mode #footer {
-  background-color: #475152;
+  background-color: #313335;
   position: relative;
   height: 40px;
   margin-top: -40px;
   clear: both;
 }
 body.dark-mode #primary-header {
-  background-color: #475152;
+  background-color: #313335;
 }
 body.dark-mode #secondary-header {
-  background-color: #475152;
+  background-color: #313335;
 }
 body.dark-mode input {
-  background-color: #354038;
+  background-color: #242728;
   color: #fff;
 }
 body.dark-mode .icon-bar {
@@ -147,7 +147,7 @@ body.dark-mode .icon-bar {
 }
 
 .navbar-nav > li > .dropdown-menu {
-  background-color: #354038;
+  background-color: #242728;
   color: #fff;
 }
 /* end of Dark-Mode values */

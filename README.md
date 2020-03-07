@@ -19,3 +19,6 @@ Copyright (c) 2020 Bradley Thompson, Chris Teters and Suliman Alsarraf
 3. In the inner directory, run 'npm run build'.
 4. In the outer directory run 'npm start'.
 
+- If you want to launch the app as a service, you can use "npm forever", a module
+that trivializes daemonizing apps.
+	- Command: 'forever start -c "npm start" ./'

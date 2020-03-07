@@ -38,9 +38,9 @@
 }
 
 .post {
-  height: 30;
+  height: 5vh;
   border: 1px solid grey;
   margin: 6px;
   padding: 8px;
   background-color: grey;
-};
+}

@@ -15,9 +15,9 @@ class NewThread extends React.Component {
       submitted: true
     });
 
-    this.setState(revert => ({
-      NewThreadVisible: !revert.NewThreadVisible
-    }));
+    this.setState({
+      NewThreadVisible: !this.state.NewThreadVisible
+    });
   }
 
   render() {

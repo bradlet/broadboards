@@ -1,8 +1,11 @@
 const express = require('express');
-const app = express();
-const port = process.env.PORT || 5000;
-const { Pool, Client } = require('pg')
+const bp = require('body-parser');
 const path = require('path')
+const encryptPW = import('./account_control.js');
+
+const app = express();
+const { Pool, Client } = require('pg')
+const port = process.env.PORT || 5000;
 
 const client = new Client({
   user: 'test',
@@ -87,4 +90,16 @@ app.get('/getRollingThreads/:numOfThreads/:totalThreads/:skipThreads', (req, res
       return results
     })
     .catch(err => console.log(err))
+});
+
+app.use(bp.urlencoded({ extended: true }));
+app.use(bp.json());
+
+app.post('/signup', (req, res) => {
+    var user = req.body.username;
+    var em = req.body.email;
+    var pw = req.body.password;
+    console.log("Recieved sign-up request: ${user}")
+    pw = encryptPW(pw);
+    console.log(typeof(pw));
 });

@@ -18,6 +18,12 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.use(express.static(path.join(__dirname, 'broadboards/build')))
 
+// built-in middleware function to parse req/res
+app.use(express.json());
+
+// temporarily set to false until nested JSON is used
+app.use(express.urlencoded({ extended: true}));
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/broadboards/build/index.html'))
 })

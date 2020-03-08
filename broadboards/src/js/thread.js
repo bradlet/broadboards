@@ -1,5 +1,8 @@
 import React from "react";
 
+// API routes
+const postThreadAPI = '/postThread'
+
 class NewThread extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +32,7 @@ class NewThread extends React.Component {
       >
         <button onClick={this.handleClick}>Create a post</button>
         {this.state.NewThreadVisible && (
-          <form action="new_thread" method="post">
+          <form action={postThreadAPI} method="POST">
             <div>
               <input type="text" name="user" required/>
               <label for="user">User</label>

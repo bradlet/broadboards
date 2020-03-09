@@ -62,8 +62,10 @@ app.get('/getThreadCount', (req, res) => {
     .catch(err => console.log(err))
 });
 
+// GET route to fetch threads after client scrolls to bottom of the page
 app.get('/getRollingThreads/:numOfThreads/:totalThreads/:skipThreads', (req, res) => {
   console.log('@ getRollingThreads')
+
   startingNumOfThreads = req.params['numOfThreads']
   skipThreads = req.params['skipThreads']
   total = req.params['totalThreads']
@@ -71,13 +73,16 @@ app.get('/getRollingThreads/:numOfThreads/:totalThreads/:skipThreads', (req, res
   // console.log('skipThreads: ' + skipThreads)
   // console.log('total: ' + total)
 
-  query = 'SELECT * FROM testThreads WHERE ID <= ' + skipBy + ' ORDER BY ID desc ' + 'LIMIT ' + startingNumOfThreads;
+  // TODO remove string concat
+  query = 'SELECT t2.id, t2.title, t2.content, t2.created, t1.username '+
+  'FROM "BroadBoards".user t1,  "BroadBoards".thread t2 '
+  + 'WHERE t1.id = t2.user_id AND t2.ID <= ' + skipBy + ' ORDER BY t2.ID desc ' +
+  'LIMIT ' + startingNumOfThreads;
   client
     .query(query)
     .then(results => {
-      // console.log(results.rows)
       results = results.rows
-      results = results.map(entry => entry['thread'].replace(/\s+$/, ''))
+      // console.log(results)
       res.send(results)
       return results
     })
@@ -147,6 +152,28 @@ app.get('/getThreadCount', (req, res) => {
     .query(query)
     .then(results => {
       results = results.rows[0]['count']
+      res.send(results)
+      return results
+    })
+    .catch(err => console.log(err))
+});
+
+app.get('/getRollingThreads/:numOfThreads/:totalThreads/:skipThreads', (req, res) => {
+  console.log('@ getRollingThreads')
+  startingNumOfThreads = req.params['numOfThreads']
+  skipThreads = req.params['skipThreads']
+  total = req.params['totalThreads']
+  skipBy = total - skipThreads
+  // console.log('skipThreads: ' + skipThreads)
+  // console.log('total: ' + total)
+
+  query = 'SELECT * FROM testThreads WHERE ID <= ' + skipBy + ' ORDER BY ID desc ' + 'LIMIT ' + startingNumOfThreads;
+  client
+    .query(query)
+    .then(results => {
+      // console.log(results.rows)
+      results = results.rows
+      results = results.map(entry => entry['thread'].replace(/\s+$/, ''))
       res.send(results)
       return results
     })

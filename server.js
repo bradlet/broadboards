@@ -21,7 +21,6 @@ app.use(express.static(path.join(__dirname, 'broadboards/build')))
 // built-in middleware function to parse req/res
 app.use(express.json());
 
-// temporarily set to false until nested JSON is used
 app.use(express.urlencoded({ extended: true}));
 
 app.get('/', (req, res) => {
@@ -33,10 +32,14 @@ app.get('/getThreads/:numOfThreads', (req, res) => {
   console.log('@ getThreads')
 
   startingNumOfThreads = req.params['numOfThreads']
-  query = 'SELECT t2.id, t2.title, t2.content, t2.created, t1.username '+
-  'FROM "BroadBoards".user t1,  "BroadBoards".thread t2 '
-  + 'WHERE t1.id = t2.user_id ORDER BY t2.ID desc ' +
+  // query = 'SELECT t2.id, t2.title, t2.content, t2.created, t1.username '+
+  // 'FROM "BroadBoards".user t1,  "BroadBoards".thread t2 '
+  // + 'WHERE t1.id = t2.user_id ORDER BY t2.ID desc ' +
+  // 'LIMIT ' + startingNumOfThreads;
+
+  query = 'SELECT * FROM "BroadBoards".thread ORDER BY ID desc ' +
   'LIMIT ' + startingNumOfThreads;
+
   client
   	.query(query)
   	.then(results => {
@@ -50,6 +53,7 @@ app.get('/getThreads/:numOfThreads', (req, res) => {
 // GET route to fetch number of threds stored in the database
 app.get('/getThreadCount', (req, res) => {
   console.log('@ getThreadCount')
+
   query = 'SELECT COUNT(*) FROM "BroadBoards".thread ';
 
   client
@@ -74,10 +78,9 @@ app.get('/getRollingThreads/:numOfThreads/:totalThreads/:skipThreads', (req, res
   // console.log('total: ' + total)
 
   // TODO remove string concat
-  query = 'SELECT t2.id, t2.title, t2.content, t2.created, t1.username '+
-  'FROM "BroadBoards".user t1,  "BroadBoards".thread t2 '
-  + 'WHERE t1.id = t2.user_id AND t2.ID <= ' + skipBy + ' ORDER BY t2.ID desc ' +
-  'LIMIT ' + startingNumOfThreads;
+  query = 'SELECT * FROM "BroadBoards".thread WHERE ID <= '
+  + skipBy + ' ORDER BY ID desc ' + 'LIMIT ' + startingNumOfThreads;
+
   client
     .query(query)
     .then(results => {

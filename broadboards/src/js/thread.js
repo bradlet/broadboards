@@ -1,5 +1,8 @@
 import React from "react";
 
+// API routes
+const postThreadAPI = '/postThread'
+
 class NewThread extends React.Component {
   constructor(props) {
     super(props);
@@ -15,9 +18,9 @@ class NewThread extends React.Component {
       submitted: true
     });
 
-    this.setState(revert => ({
-      NewThreadVisible: !revert.NewThreadVisible
-    }));
+    this.setState({
+      NewThreadVisible: !this.state.NewThreadVisible
+    });
   }
 
   render() {
@@ -29,21 +32,21 @@ class NewThread extends React.Component {
       >
         <button onClick={this.handleClick}>Create a post</button>
         {this.state.NewThreadVisible && (
-          <form action="new_thread" method="post">
+          <form action={postThreadAPI} method="POST">
             <div>
-              <input type="text" name="user" required></input>
+              <input type="text" name="user" required/>
               <label for="user">User</label>
             </div>
             <div>
-              <input type="text" name="title" required></input>
+              <input type="text" name="title" required/>
               <label for="title">Title</label>
             </div>
             <div>
-              <textarea type="text" name="message" required></textarea>
-              <label for="message">Comments</label>
+              <textarea type="text" name="thread" required/>
+              <label for="thread">Thread</label>
             </div>
             <div>
-              <button onClick={this.handleClick} type="submit">
+              <button type="submit">
                 Post it!
               </button>
             </div>

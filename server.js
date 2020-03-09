@@ -18,6 +18,12 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.use(express.static(path.join(__dirname, 'broadboards/build')))
 
+// built-in middleware function to parse req/res
+app.use(express.json());
+
+// temporarily set to false until nested JSON is used
+app.use(express.urlencoded({ extended: true}));
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/broadboards/build/index.html'))
 })
@@ -87,4 +93,23 @@ app.get('/getRollingThreads/:numOfThreads/:totalThreads/:skipThreads', (req, res
       return results
     })
     .catch(err => console.log(err))
+});
+
+app.post('/postThread', (req, res) => {
+  console.log('@ postThread')
+  // console.log(req.body)
+
+  user = req.body.user
+  title = req.body.title
+  thread = req.body.thread
+
+  // TODO change to include all data
+  query = 'INSERT INTO testThreads (thread) VALUES ($1)';
+  values = [thread]
+
+  client
+    .query(query, values)
+    // .then(results => console.log(results))
+    .catch(err => console.log(err))
+  res.redirect('/')
 });

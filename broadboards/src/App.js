@@ -101,12 +101,15 @@ class App extends React.Component {
     setTimeout(() => {
       this.fetchRollingThreads()
         .then(res => {
-          console.log(res)
+          // console.log(res)
           this.setState({
             currentDisplayedThreads:
             this.state.currentDisplayedThreads + res.length,
             remainingThreads: this.state.remainingThreads - res.length,
-            threads: this.state.threads.concat(res)
+            usernames: this.state.usernames.concat(this.filterUsernames(res)),
+            titles: this.state.titles.concat(this.filterTitles(res)),
+            timestamps: this.state.timestamps.concat(this.filterTimestamps(res)),
+            threads: this.state.threads.concat(this.filterThreads(res))
           })
       // this.setState({
       //   threads: this.state.threads.concat(res)

@@ -21,13 +21,102 @@ app.use(express.static(path.join(__dirname, 'broadboards/build')))
 // built-in middleware function to parse req/res
 app.use(express.json());
 
-// temporarily set to false until nested JSON is used
 app.use(express.urlencoded({ extended: true}));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/broadboards/build/index.html'))
 })
 
+// GET route to fetch initial threads to broadboards
+app.get('/getThreads/:numOfThreads', (req, res) => {
+  console.log('@ getThreads')
+
+  startingNumOfThreads = req.params['numOfThreads']
+  // query = 'SELECT t2.id, t2.title, t2.content, t2.created, t1.username '+
+  // 'FROM "BroadBoards".user t1,  "BroadBoards".thread t2 '
+  // + 'WHERE t1.id = t2.user_id ORDER BY t2.ID desc ' +
+  // 'LIMIT ' + startingNumOfThreads;
+
+  query = 'SELECT * FROM "BroadBoards".thread ORDER BY ID desc ' +
+  'LIMIT $1';
+  values = [startingNumOfThreads]
+
+  client
+    .query(query, values)
+    .then(results => {
+      results = results.rows
+      res.send(results)
+    })
+    .catch(err => console.log(err))
+});
+
+// GET route to fetch number of threds stored in the database
+app.get('/getThreadCount', (req, res) => {
+  console.log('@ getThreadCount')
+
+  query = 'SELECT COUNT(*) FROM "BroadBoards".thread ';
+
+  client
+    .query(query)
+    .then(results => {
+      results = results.rows[0]['count']
+      res.send(results)
+      return results
+    })
+    .catch(err => console.log(err))
+});
+
+// GET route to fetch threads after client scrolls to bottom of the page
+app.get('/getRollingThreads/:numOfThreads/:totalThreads/:skipThreads', (req, res) => {
+  console.log('@ getRollingThreads')
+
+  startingNumOfThreads = req.params['numOfThreads']
+  skipThreads = req.params['skipThreads']
+  total = req.params['totalThreads']
+  skipBy = total - skipThreads
+  // console.log('skipThreads: ' + skipThreads)
+  // console.log('total: ' + total)
+
+  query = 'SELECT * FROM "BroadBoards".thread WHERE ID <= $1'
+  + ' ORDER BY ID desc ' + 'LIMIT $2';
+  values = [skipBy, startingNumOfThreads]
+
+  client
+    .query(query, values)
+    .then(results => {
+      results = results.rows
+      // console.log(results)
+      res.send(results)
+      return results
+    })
+    .catch(err => console.log(err))
+});
+
+app.post('/postThread', (req, res) => {
+  console.log('@ postThread')
+  // console.log(req.body)
+
+  title = req.body.title
+  content = req.body.thread
+  created = new Date().toISOString()
+  username = req.body.user
+
+  query = 'INSERT INTO "BroadBoards".thread (title, content, created, username) ' +
+  'VALUES ($1, $2, $3, $4)';
+  values = [title, content, created, username]
+
+  client
+    .query(query, values)
+    // .then(results => console.log(results))
+    .catch(err => console.log(err))
+  res.redirect('/')
+});
+
+
+/* This section represents the same API endpoints
+   but using the testing tables instead of
+   the production ones */
+/*
 // create a GET route
 app.get('/getThreads/:numOfThreads', (req, res) => {
   console.log('@ getThreads')
@@ -48,20 +137,20 @@ app.get('/getThreads/:numOfThreads', (req, res) => {
   // })
 
   client
-  	.query(query)
-  	.then(results => {
-  		results = results.rows
-  		results = results.map(entry => entry['thread'].replace(/\s+$/, ''))
-  		res.send(results)
-  		return results
-  	})
-  	// .then(data => console.log(data))
-  	.catch(err => console.log(err))
+    .query(query)
+    .then(results => {
+      results = results.rows
+      results = results.map(entry => entry['thread'].replace(/\s+$/, ''))
+      res.send(results)
+      return results
+    })
+    // .then(data => console.log(data))
+    .catch(err => console.log(err))
 });
 
 app.get('/getThreadCount', (req, res) => {
   console.log('@ getThreadCount')
-  query = 'SELECT COUNT(*) FROM testThreads ';
+  query = 'SELECT COUNT(*) FROM "BroadBoards".thread ';
 
   client
     .query(query)
@@ -113,3 +202,4 @@ app.post('/postThread', (req, res) => {
     .catch(err => console.log(err))
   res.redirect('/')
 });
+*/

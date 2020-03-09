@@ -96,13 +96,14 @@ app.post('/postThread', (req, res) => {
   console.log('@ postThread')
   // console.log(req.body)
 
-  user = req.body.user
   title = req.body.title
-  thread = req.body.thread
+  content = req.body.thread
+  created = new Date().toISOString()
+  username = req.body.user
 
-  // TODO change to include all data
-  query = 'INSERT INTO testThreads (thread) VALUES ($1)';
-  values = [thread]
+  query = 'INSERT INTO "BroadBoards".thread (title, content, created, username) ' +
+  'VALUES ($1, $2, $3, $4)';
+  values = [title, content, created, username]
 
   client
     .query(query, values)
@@ -181,5 +182,24 @@ app.get('/getRollingThreads/:numOfThreads/:totalThreads/:skipThreads', (req, res
       return results
     })
     .catch(err => console.log(err))
+});
+
+app.post('/postThread', (req, res) => {
+  console.log('@ postThread')
+  // console.log(req.body)
+
+  user = req.body.user
+  title = req.body.title
+  thread = req.body.thread
+
+  // TODO change to include all data
+  query = 'INSERT INTO testThreads (thread) VALUES ($1)';
+  values = [thread]
+
+  client
+    .query(query, values)
+    // .then(results => console.log(results))
+    .catch(err => console.log(err))
+  res.redirect('/')
 });
 */

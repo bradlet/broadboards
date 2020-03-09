@@ -84,6 +84,8 @@ class App extends React.Component {
   }
 
   state = {
+    titles: [],
+    timestamps: [],
     threads: [],
     threadCount: 0,
     currentDisplayedThreads: 0

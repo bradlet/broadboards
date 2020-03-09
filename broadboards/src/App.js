@@ -87,6 +87,7 @@ class App extends React.Component {
   }
 
   state = {
+    usernames: [],
     titles: [],
     timestamps: [],
     threads: [],

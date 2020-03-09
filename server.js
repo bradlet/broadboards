@@ -156,6 +156,30 @@ app.get('/checkEmailExists/:email',(req, res) => {
     .catch(err => console.log(err))
 });
 
+// GET route to check if the supplied password match actual password
+app.get('/checkPassword/:username/:password',(req, res) => {
+  console.log('@ checkPassword')
+
+  query = 'SELECT * FROM "BroadBoards".user ' +
+  'WHERE LOWER(username) = LOWER($1)';
+  suppliedUsername = req.params['username']
+  suppliedPassword = req.params['password']
+  // console.log(req.params['username'])
+  values = [suppliedUsername]
+  console.log(suppliedUsername)
+
+  client
+    .query(query, values)
+    .then(results => {
+      results = results.rows
+      // console.log(results)
+      if (results.length == 0) res.send('-2');
+      else if (suppliedPassword === results[0]['password']) res.send(true);
+      else res.send('-1')
+    })
+    .catch(err => console.log(err))
+});
+
 // ===================================================
 /* This section represents the same API endpoints
    but using the testing tables instead of

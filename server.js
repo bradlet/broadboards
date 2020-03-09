@@ -28,32 +28,20 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/broadboards/build/index.html'))
 })
 
-// create a GET route
+// GET route to fetch initial threads to broadboards
 app.get('/getThreads/:numOfThreads', (req, res) => {
   console.log('@ getThreads')
+
   startingNumOfThreads = req.params['numOfThreads']
-  //console.log(startingNumOfThreads)
-  query = 'SELECT * FROM testThreads ORDER BY ID desc ' +
+  query = 'SELECT t2.id, t2.title, t2.content, t2.created, t1.username '+
+  'FROM "BroadBoards".user t1,  "BroadBoards".thread t2 '
+  + 'WHERE t1.id = t2.user_id ORDER BY t2.ID desc ' +
   'LIMIT ' + startingNumOfThreads;
-
-  // client.query(query, (err, res) => {
-  //   // console.log(res.rows)
-  //   results = res.rows
-  //   // console.log(results)
-  //   test = results.map(entry => entry['thread'].replace(/\s+$/, ''))
-  //   console.log(test[0].replace(/\s+$/, ''))
-  //   console.log(test)
-  //   client.end()
-  //   return test
-  // })
-
   client
   	.query(query)
   	.then(results => {
   		results = results.rows
-  		results = results.map(entry => entry['thread'].replace(/\s+$/, ''))
   		res.send(results)
-  		return results
   	})
   	// .then(data => console.log(data))
   	.catch(err => console.log(err))
@@ -113,3 +101,40 @@ app.post('/postThread', (req, res) => {
     .catch(err => console.log(err))
   res.redirect('/')
 });
+
+
+/* This section represents the same API endpoints
+   but using the testing tables instead of
+   the production ones */
+/*
+// create a GET route
+app.get('/getThreads/:numOfThreads', (req, res) => {
+  console.log('@ getThreads')
+  startingNumOfThreads = req.params['numOfThreads']
+  //console.log(startingNumOfThreads)
+  query = 'SELECT * FROM testThreads ORDER BY ID desc ' +
+  'LIMIT ' + startingNumOfThreads;
+
+  // client.query(query, (err, res) => {
+  //   // console.log(res.rows)
+  //   results = res.rows
+  //   // console.log(results)
+  //   test = results.map(entry => entry['thread'].replace(/\s+$/, ''))
+  //   console.log(test[0].replace(/\s+$/, ''))
+  //   console.log(test)
+  //   client.end()
+  //   return test
+  // })
+
+  client
+    .query(query)
+    .then(results => {
+      results = results.rows
+      results = results.map(entry => entry['thread'].replace(/\s+$/, ''))
+      res.send(results)
+      return results
+    })
+    // .then(data => console.log(data))
+    .catch(err => console.log(err))
+});
+*/

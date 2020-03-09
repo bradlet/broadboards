@@ -112,7 +112,29 @@ app.post('/postThread', (req, res) => {
   res.redirect('/')
 });
 
+// login - create an account API endpoints
 
+// GET route to check if username exists in the database
+app.get('/checkUsernameExists/:username',(req, res) => {
+  console.log('@ checkUsernameExists')
+
+  query = 'SELECT count(*) FROM "BroadBoards".user ' +
+  'WHERE LOWER(username) = LOWER($1)';
+  suppliedUsername = req.params['username']
+  // console.log(req.params['username'])
+  values = [suppliedUsername]
+
+  client
+    .query(query, values)
+    .then(results => {
+      results = results.rows[0]['count']
+      if (results == 0) res.send(false);
+      else res.send(true)
+    })
+    .catch(err => console.log(err))
+});
+
+// ===================================================
 /* This section represents the same API endpoints
    but using the testing tables instead of
    the production ones */

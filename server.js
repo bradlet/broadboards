@@ -115,6 +115,7 @@ app.post('/postThread', (req, res) => {
 // login - create an account API endpoints
 
 // GET route to check if username exists in the database
+// Sends true if there was another user with the same username
 app.get('/checkUsernameExists/:username',(req, res) => {
   console.log('@ checkUsernameExists')
 
@@ -127,6 +128,27 @@ app.get('/checkUsernameExists/:username',(req, res) => {
   client
     .query(query, values)
     .then(results => {
+      results = results.rows[0]['count']
+      if (results == 0) res.send(false);
+      else res.send(true)
+    })
+    .catch(err => console.log(err))
+});
+
+// GET route to check if username exists in the database
+// Sends true if there was user with the same supplied email
+app.get('/checkEmailExists/:email',(req, res) => {
+  console.log('@ checkEmailExists')
+
+  query = 'SELECT count(*) FROM "BroadBoards".user ' +
+  'WHERE LOWER(email) = LOWER($1)';
+  suppliedEmail = req.params['email']
+  values = [suppliedEmail]
+
+  client
+    .query(query, values)
+    .then(results => {
+      console.log(results)
       results = results.rows[0]['count']
       if (results == 0) res.send(false);
       else res.send(true)

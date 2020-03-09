@@ -75,7 +75,10 @@ class App extends React.Component {
     this.fetchThreads()
       .then(res => {
         this.setState({
-          threads: res,
+          usernames: this.filterUsernames(res),
+          titles: this.filterTitles(res),
+          timestamps: this.filterTimestamps(res),
+          threads: this.filterThreads(res),
           currentDisplayedThreads: res.length,
           remainingThreads: this.state.threadCount - res.length
         })

@@ -51,6 +51,22 @@ class App extends React.Component {
     return body;
   };
 
+  filterUsernames = (obj) => {
+    return obj.map(entry => entry['username'])
+  };
+
+  filterTitles = (obj) => {
+    return obj.map(entry => entry['title'].replace(/\s+$/, ''))
+  };
+
+  filterTimestamps = (obj) => {
+    return obj.map(entry => entry['created'].replace(/\s+$/, ''))
+  };
+
+  filterThreads = (obj) => {
+    return obj.map(entry => entry['content'].replace(/\s+$/, ''))
+  };
+
   componentDidMount() {
     this.fetchThreadCount()
       .then(res => this.setState({threadCount: res}))

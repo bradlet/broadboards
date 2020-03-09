@@ -47,9 +47,10 @@ app.get('/getThreads/:numOfThreads', (req, res) => {
   	.catch(err => console.log(err))
 });
 
+// GET route to fetch number of threds stored in the database
 app.get('/getThreadCount', (req, res) => {
   console.log('@ getThreadCount')
-  query = 'SELECT COUNT(*) FROM testThreads ';
+  query = 'SELECT COUNT(*) FROM "BroadBoards".thread ';
 
   client
     .query(query)
@@ -135,6 +136,20 @@ app.get('/getThreads/:numOfThreads', (req, res) => {
       return results
     })
     // .then(data => console.log(data))
+    .catch(err => console.log(err))
+});
+
+app.get('/getThreadCount', (req, res) => {
+  console.log('@ getThreadCount')
+  query = 'SELECT COUNT(*) FROM "BroadBoards".thread ';
+
+  client
+    .query(query)
+    .then(results => {
+      results = results.rows[0]['count']
+      res.send(results)
+      return results
+    })
     .catch(err => console.log(err))
 });
 */

@@ -38,16 +38,16 @@ app.get('/getThreads/:numOfThreads', (req, res) => {
   // 'LIMIT ' + startingNumOfThreads;
 
   query = 'SELECT * FROM "BroadBoards".thread ORDER BY ID desc ' +
-  'LIMIT ' + startingNumOfThreads;
+  'LIMIT $1';
+  values = [startingNumOfThreads]
 
   client
-  	.query(query)
-  	.then(results => {
-  		results = results.rows
-  		res.send(results)
-  	})
-  	// .then(data => console.log(data))
-  	.catch(err => console.log(err))
+    .query(query, values)
+    .then(results => {
+      results = results.rows
+      res.send(results)
+    })
+    .catch(err => console.log(err))
 });
 
 // GET route to fetch number of threds stored in the database
@@ -77,12 +77,12 @@ app.get('/getRollingThreads/:numOfThreads/:totalThreads/:skipThreads', (req, res
   // console.log('skipThreads: ' + skipThreads)
   // console.log('total: ' + total)
 
-  // TODO remove string concat
-  query = 'SELECT * FROM "BroadBoards".thread WHERE ID <= '
-  + skipBy + ' ORDER BY ID desc ' + 'LIMIT ' + startingNumOfThreads;
+  query = 'SELECT * FROM "BroadBoards".thread WHERE ID <= $1'
+  + ' ORDER BY ID desc ' + 'LIMIT $2';
+  values = [skipBy, startingNumOfThreads]
 
   client
-    .query(query)
+    .query(query, values)
     .then(results => {
       results = results.rows
       // console.log(results)

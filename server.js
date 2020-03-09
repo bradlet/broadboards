@@ -180,6 +180,30 @@ app.get('/checkPassword/:username/:password',(req, res) => {
     .catch(err => console.log(err))
 });
 
+// POST route to create a user
+// expects: username, first, last, email and password
+app.post('/createUser',(req, res) => {
+  console.log('@ createUser')
+  // console.log(req.body)
+
+  username = req.body.username
+  first = req.body.first
+  last = req.body.last
+  email = req.body.email
+  password = req.body.password
+  joined = new Date().toISOString()
+
+  query = 'INSERT INTO "BroadBoards".user (username, first, last, email, password, joined) ' +
+  'VALUES ($1, $2, $3, $4, $5, $6)';
+  values = [username, first, last, email, password, joined]
+
+  client
+    .query(query, values)
+    // .then(results => console.log(results))
+    .catch(err => console.log(err))
+  res.redirect('/')
+});
+
 // ===================================================
 /* This section represents the same API endpoints
    but using the testing tables instead of

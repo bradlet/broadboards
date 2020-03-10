@@ -173,11 +173,14 @@ app.post('/checkPassword',(req, res) => {
     .query(query, values)
     .then(results => {
       results = results.rows
+      console.log(results.length);
       if (results.length != 0 && encryptPW.checkPW(suppliedPassword, results[0]['password'])) {
         res.redirect('/');
       }
-      else 
+      else {
+        console.log("Failed login attempt by " + suppliedUsername + "; Incorrect Pass.");
         res.redirect('/login.html');
+      }
     })
     .catch(err => console.log(err))
 });
@@ -197,7 +200,7 @@ app.post('/createUser',(req, res) => {
   query = 'INSERT INTO "BroadBoards".user (username, first, last, email, password, joined) ' +
   'VALUES ($1, $2, $3, $4, $5, $6)';
   values = [username, " ", " ", email, password, joined]
-
+  console.log(values);
   client
     .query(query, values)
     // .then(results => console.log(results))

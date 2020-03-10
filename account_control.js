@@ -6,5 +6,8 @@ module.exports = {
     const salt = bcrypt.genSaltSync(saltRounds);
     const hash = bcrypt.hashSync(pass, salt);
     return hash;
-	},
+    },
+    checkPW: function(pass, hash) {
+        return bcrypt.compareSync(pass, hash);
+    }
 }

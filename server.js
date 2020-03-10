@@ -161,39 +161,38 @@ app.get('/checkEmailExists/:email',(req, res) => {
 // POST route to check if the supplied password match actual password
 app.post('/checkPassword',(req, res) => {
   console.log('@ checkPassword')
+  var passwordMatch = false;
 
   query = 'SELECT * FROM "BroadBoards".user ' +
   'WHERE LOWER(username) = LOWER($1)';
   suppliedUsername = req.body.username
   suppliedPassword = req.body.password
-  // console.log(req.params['username'])
   values = [suppliedUsername]
 
   client
     .query(query, values)
     .then(results => {
       results = results.rows
-      // console.log(results)
-      if (results.length == 0) res.send('-2');
-      else if (suppliedPassword === results[0]['password']) res.send(true);
-      else res.send('-1')
+      if (results.length != 0 && encryptPW.checkPW(suppliedPassword, results[0]['password'])) {
+        res.redirect('/');
+      }
+      else 
+        res.redirect('/login.html');
     })
     .catch(err => console.log(err))
-  // res.redirect('/')
 });
 
 // POST route to create a user
 // expects: username, first, last, email and password
 app.post('/createUser',(req, res) => {
   console.log('@ createUser')
-  // console.log(req.body)
 
   username = req.body.username
   email = req.body.email
   password = req.body.password
   joined = new Date().toISOString()
-  console.log("Recieved sign-up request: " + username)
   password = encryptPW.encryptPW(password);
+  console.log("Recieved sign-up request: " + username)
 
   query = 'INSERT INTO "BroadBoards".user (username, first, last, email, password, joined) ' +
   'VALUES ($1, $2, $3, $4, $5, $6)';

@@ -92,7 +92,7 @@
             <!-- End of Primary Navigation Bar -->
             <!-- Login Form -->
             <div>
-                <form id="log-in" class="acct" action="/signup" method="POST">
+                <form id="log-in" class="acct" action="/checkPassword" method="POST">
                     <h1 class="d-block mt-3">Login</h1>
                     <div class="sign-grid">
                         <label for="username">Username:</label>
@@ -100,7 +100,7 @@
                         <label for="password">Password:</label>
                         <input class="form-control" type="password" name="password" size=30 maxlength=30 />
                         <!-- TODO: add a re-type password input to make sure it is typed correctly -->
-                        <input class="btn btn-primary" type="button" name="submit" value="Login" />
+                        <input class="btn btn-primary" type="submit" name="submit" value="Login" />
                         <input class="btn btn-secondary" type="reset" name="reset" value="Reset" />
                     </div>
                 </form>

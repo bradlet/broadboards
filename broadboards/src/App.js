@@ -51,6 +51,22 @@ class App extends React.Component {
     return body;
   };
 
+  filterUsernames = (obj) => {
+    return obj.map(entry => entry['username'])
+  };
+
+  filterTitles = (obj) => {
+    return obj.map(entry => entry['title'].replace(/\s+$/, ''))
+  };
+
+  filterTimestamps = (obj) => {
+    return obj.map(entry => entry['created'].replace(/\s+$/, ''))
+  };
+
+  filterThreads = (obj) => {
+    return obj.map(entry => entry['content'].replace(/\s+$/, ''))
+  };
+
   componentDidMount() {
     this.fetchThreadCount()
       .then(res => this.setState({threadCount: res}))
@@ -59,7 +75,10 @@ class App extends React.Component {
     this.fetchThreads()
       .then(res => {
         this.setState({
-          threads: res,
+          usernames: this.filterUsernames(res),
+          titles: this.filterTitles(res),
+          timestamps: this.filterTimestamps(res),
+          threads: this.filterThreads(res),
           currentDisplayedThreads: res.length,
           remainingThreads: this.state.threadCount - res.length
         })
@@ -68,6 +87,9 @@ class App extends React.Component {
   }
 
   state = {
+    usernames: [],
+    titles: [],
+    timestamps: [],
     threads: [],
     threadCount: 0,
     currentDisplayedThreads: 0
@@ -79,12 +101,15 @@ class App extends React.Component {
     setTimeout(() => {
       this.fetchRollingThreads()
         .then(res => {
-          console.log(res)
+          // console.log(res)
           this.setState({
             currentDisplayedThreads:
             this.state.currentDisplayedThreads + res.length,
             remainingThreads: this.state.remainingThreads - res.length,
-            threads: this.state.threads.concat(res)
+            usernames: this.state.usernames.concat(this.filterUsernames(res)),
+            titles: this.state.titles.concat(this.filterTitles(res)),
+            timestamps: this.state.timestamps.concat(this.filterTimestamps(res)),
+            threads: this.state.threads.concat(this.filterThreads(res))
           })
       // this.setState({
       //   threads: this.state.threads.concat(res)
@@ -114,7 +139,10 @@ class App extends React.Component {
         >
           {this.state.threads.map((i, index) => (
             <div className="post" key={i}>
-              #{i}
+              <p>Username: {this.state.usernames[index]}</p>
+              <p>Title: {this.state.titles[index]}
+                {'  '} Created: {this.state.timestamps[index]}</p>
+              <p>{this.state.threads[index]}</p>
             </div>
           ))}
         </InfiniteScroll>

@@ -197,7 +197,7 @@ app.post('/createUser',(req, res) => {
 
   query = 'INSERT INTO "BroadBoards".user (username, first, last, email, password, joined) ' +
   'VALUES ($1, $2, $3, $4, $5, $6)';
-  values = [username, first, " ", " ", password, joined]
+  values = [username, " ", " ", email, password, joined]
 
   client
     .query(query, values)

@@ -1,6 +1,8 @@
 const express = require('express');
 const bp = require('body-parser');
-const encryptPW = import('./account_control.js');
+// const encryptPW = import('./account_control.js');
+// import {encryptPW} from './account_control.js';
+const encryptPW = require('./account_control.js');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -122,8 +124,8 @@ app.post('/signup', (req, res) => {
     var user = req.body.username;
     var em = req.body.email;
     var pw = req.body.password;
-    console.log("Recieved sign-up request: ${user}")
-    pw = encryptPW(pw);
+    console.log("Recieved sign-up request: " + user)
+    pw = encryptPW.encryptPW(pw);
     console.log(typeof(pw));
 });
 

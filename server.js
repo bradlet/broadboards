@@ -189,30 +189,21 @@ app.post('/createUser',(req, res) => {
   // console.log(req.body)
 
   username = req.body.username
-  first = req.body.first
-  last = req.body.last
   email = req.body.email
   password = req.body.password
   joined = new Date().toISOString()
+  console.log("Recieved sign-up request: " + username)
+  password = encryptPW.encryptPW(password);
 
   query = 'INSERT INTO "BroadBoards".user (username, first, last, email, password, joined) ' +
   'VALUES ($1, $2, $3, $4, $5, $6)';
-  values = [username, first, last, email, password, joined]
+  values = [username, first, " ", " ", password, joined]
 
   client
     .query(query, values)
     // .then(results => console.log(results))
     .catch(err => console.log(err))
   res.redirect('/')
-});
-
-app.post('/signup', (req, res) => {
-    var user = req.body.username;
-    var em = req.body.email;
-    var pw = req.body.password;
-    console.log("Recieved sign-up request: " + user)
-    pw = encryptPW.encryptPW(pw);
-    console.log(typeof(pw));
 });
 
 // ===================================================

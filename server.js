@@ -112,7 +112,99 @@ app.post('/postThread', (req, res) => {
   res.redirect('/')
 });
 
+// login - create an account API endpoints
 
+// GET route to check if username exists in the database
+// Sends true if there was another user with the same username
+app.get('/checkUsernameExists/:username',(req, res) => {
+  console.log('@ checkUsernameExists')
+
+  query = 'SELECT count(*) FROM "BroadBoards".user ' +
+  'WHERE LOWER(username) = LOWER($1)';
+  suppliedUsername = req.params['username']
+  // console.log(req.params['username'])
+  values = [suppliedUsername]
+
+  client
+    .query(query, values)
+    .then(results => {
+      results = results.rows[0]['count']
+      if (results == 0) res.send(false);
+      else res.send(true)
+    })
+    .catch(err => console.log(err))
+});
+
+// GET route to check if username exists in the database
+// Sends true if there was user with the same supplied email
+app.get('/checkEmailExists/:email',(req, res) => {
+  console.log('@ checkEmailExists')
+
+  query = 'SELECT count(*) FROM "BroadBoards".user ' +
+  'WHERE LOWER(email) = LOWER($1)';
+  suppliedEmail = req.params['email']
+  values = [suppliedEmail]
+
+  client
+    .query(query, values)
+    .then(results => {
+      console.log(results)
+      results = results.rows[0]['count']
+      if (results == 0) res.send(false);
+      else res.send(true)
+    })
+    .catch(err => console.log(err))
+});
+
+// POST route to check if the supplied password match actual password
+app.post('/checkPassword',(req, res) => {
+  console.log('@ checkPassword')
+
+  query = 'SELECT * FROM "BroadBoards".user ' +
+  'WHERE LOWER(username) = LOWER($1)';
+  suppliedUsername = req.body.username
+  suppliedPassword = req.body.password
+  // console.log(req.params['username'])
+  values = [suppliedUsername]
+
+  client
+    .query(query, values)
+    .then(results => {
+      results = results.rows
+      // console.log(results)
+      if (results.length == 0) res.send('-2');
+      else if (suppliedPassword === results[0]['password']) res.send(true);
+      else res.send('-1')
+    })
+    .catch(err => console.log(err))
+  // res.redirect('/')
+});
+
+// POST route to create a user
+// expects: username, first, last, email and password
+app.post('/createUser',(req, res) => {
+  console.log('@ createUser')
+  // console.log(req.body)
+
+  username = req.body.username
+  first = req.body.first
+  last = req.body.last
+  email = req.body.email
+  password = req.body.password
+  joined = new Date().toISOString()
+
+  query = 'INSERT INTO "BroadBoards".user (username, first, last, email, password, joined) ' +
+  'VALUES ($1, $2, $3, $4, $5, $6)';
+  values = [username, first, last, email, password, joined]
+
+  client
+    .query(query, values)
+    // .then(results => console.log(results))
+    .catch(err => console.log(err))
+  res.redirect('/')
+});
+
+// ===================================================
 /* This section represents the same API endpoints
    but using the testing tables instead of
    the production ones */

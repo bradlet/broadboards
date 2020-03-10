@@ -156,17 +156,16 @@ app.get('/checkEmailExists/:email',(req, res) => {
     .catch(err => console.log(err))
 });
 
-// GET route to check if the supplied password match actual password
-app.get('/checkPassword/:username/:password',(req, res) => {
+// POST route to check if the supplied password match actual password
+app.post('/checkPassword',(req, res) => {
   console.log('@ checkPassword')
 
   query = 'SELECT * FROM "BroadBoards".user ' +
   'WHERE LOWER(username) = LOWER($1)';
-  suppliedUsername = req.params['username']
-  suppliedPassword = req.params['password']
+  suppliedUsername = req.body.username
+  suppliedPassword = req.body.password
   // console.log(req.params['username'])
   values = [suppliedUsername]
-  console.log(suppliedUsername)
 
   client
     .query(query, values)
@@ -178,6 +177,7 @@ app.get('/checkPassword/:username/:password',(req, res) => {
       else res.send('-1')
     })
     .catch(err => console.log(err))
+  // res.redirect('/')
 });
 
 // POST route to create a user

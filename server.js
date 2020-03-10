@@ -1,7 +1,4 @@
 const express = require('express');
-const bp = require('body-parser');
-// const encryptPW = import('./account_control.js');
-// import {encryptPW} from './account_control.js';
 const encryptPW = require('./account_control.js');
 
 const app = express();
@@ -208,9 +205,6 @@ app.post('/createUser',(req, res) => {
     .catch(err => console.log(err))
   res.redirect('/')
 });
-
-app.use(bp.urlencoded({ extended: true }));
-app.use(bp.json());
 
 app.post('/signup', (req, res) => {
     var user = req.body.username;

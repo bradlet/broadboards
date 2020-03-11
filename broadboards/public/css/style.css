@@ -40,13 +40,24 @@ body {
     height: 100vh;
 }
 
+.acct-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+}
+
 .acct {
-    background-color: #ffffff;
     width: 40%;
-    height: 50vh;
-    padding: 10px;
+    /*height: 25vh;*/
+    padding: 10px 30px;
     margin: 10px auto;
     justify-self: center;
+    background-color: aliceblue;
+}
+
+.sign-grid {
+  margin-bottom: 25px;
 }
 
 .sign-grid {

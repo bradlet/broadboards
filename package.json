@@ -4,13 +4,15 @@
   "description": "A forum-based social media solution to echo chambers and other social media-based problems.",
   "main": "server.js",
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "pg": "^7.18.2"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js && cd broadboards && npm install && npm run build"
+    "start": "cd broadboards && npm install && npm run build && cd .. && npm install && node server.js"
   },
   "repository": {
     "type": "git",

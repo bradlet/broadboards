@@ -22,3 +22,5 @@ Copyright (c) 2020 Bradley Thompson, Chris Teters and Suliman Alsarraf
 - If you want to launch the app as a service, you can use "npm forever", a module
 that trivializes daemonizing apps.
 	- Command: 'forever start -c "npm start" ./'
+
+- To deploy with a non-default secret for the login session, use the SECRET env. variable.

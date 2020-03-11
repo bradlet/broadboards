@@ -1,4 +1,7 @@
 const express = require('express');
+const session = require('express-session');
+const encryptPW = require('./account_control.js');
+
 const app = express();
 const port = process.env.PORT || 5000;
 const { Pool, Client } = require('pg')
@@ -17,12 +20,15 @@ client.connect()
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.use(express.static(path.join(__dirname, 'broadboards/build')))
-
-// built-in middleware function to parse req/res
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true}));
+app.use(session({
+    secret: process.env.SECRET || "DEFAULTSECRETYOUSHOULDSETASECRET",
+    resave: false,
+    saveUninitialized: true,
+}));
 
+// Root == Home page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/broadboards/build/index.html'))
 })
@@ -95,15 +101,19 @@ app.get('/getRollingThreads/:numOfThreads/:totalThreads/:skipThreads', (req, res
 app.post('/postThread', (req, res) => {
   console.log('@ postThread')
   // console.log(req.body)
-
+  if (!req.session.user) {
+    res.redirect(401, '/'); //401 == unauthorized access
+    return;
+  }
   title = req.body.title
   content = req.body.thread
   created = new Date().toISOString()
-  username = req.body.user
+  username = req.session.user
 
   query = 'INSERT INTO "BroadBoards".thread (title, content, created, username) ' +
   'VALUES ($1, $2, $3, $4)';
   values = [title, content, created, username]
+  console.log(values);
 
   client
     .query(query, values)
@@ -159,44 +169,47 @@ app.get('/checkEmailExists/:email',(req, res) => {
 // POST route to check if the supplied password match actual password
 app.post('/checkPassword',(req, res) => {
   console.log('@ checkPassword')
+  var passwordMatch = false;
 
   query = 'SELECT * FROM "BroadBoards".user ' +
   'WHERE LOWER(username) = LOWER($1)';
   suppliedUsername = req.body.username
   suppliedPassword = req.body.password
-  // console.log(req.params['username'])
   values = [suppliedUsername]
 
   client
     .query(query, values)
     .then(results => {
       results = results.rows
-      // console.log(results)
-      if (results.length == 0) res.send('-2');
-      else if (suppliedPassword === results[0]['password']) res.send(true);
-      else res.send('-1')
+      console.log(results.length);
+      if (results.length != 0 && encryptPW.checkPW(suppliedPassword, results[0]['password'])) {
+        req.session.user = suppliedUsername;
+        res.redirect('/');
+      }
+      else {
+        console.log("Failed login attempt by " + suppliedUsername + "; Incorrect Pass.");
+        res.redirect('/login.html');
+      }
     })
     .catch(err => console.log(err))
-  // res.redirect('/')
 });
 
 // POST route to create a user
 // expects: username, first, last, email and password
 app.post('/createUser',(req, res) => {
   console.log('@ createUser')
-  // console.log(req.body)
 
   username = req.body.username
-  first = req.body.first
-  last = req.body.last
   email = req.body.email
   password = req.body.password
   joined = new Date().toISOString()
+  password = encryptPW.encryptPW(password);
+  console.log("Recieved sign-up request: " + username)
 
   query = 'INSERT INTO "BroadBoards".user (username, first, last, email, password, joined) ' +
   'VALUES ($1, $2, $3, $4, $5, $6)';
-  values = [username, first, last, email, password, joined]
-
+  values = [username, " ", " ", email, password, joined]
+  console.log(values);
   client
     .query(query, values)
     // .then(results => console.log(results))

@@ -38,29 +38,41 @@
 }
 
 .post {
-  border: 1px solid grey;
+  color: black;
+  border: 1px solid #eff0f1;
   margin: 6px;
   padding: 8px;
-  background-color: grey;
+  background-color: #eff0f1;
 }
 
-/* Medium devices (tablets, 768px and up) */
+.postText {
+  font-size: 17px;
+}
+
+.infoText {
+  margin-bottom: 25px;
+}
+
+/* Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .post {
     height: 20vh;
   }
 }
+*/
 
-/* Large devices (desktops, 992px and up) */
+/* Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   .post {
     height: 15vh;
   }
 }
+*/
 
-/* Extra large devices (large desktops, 1200px and up) */
+/* Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   .post {
     height: 10vh;
   }
 }
+*/

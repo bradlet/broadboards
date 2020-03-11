@@ -12,7 +12,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd broadboards && npm install && npm run build && cd .. && npm install && node server.js"
+    "start": "cd broadboards && npm install && npm run build && cd .. && npm install && node server.js",
+    "fast": "cd broadboards && npm run build && cd .. && node server.js"
   },
   "repository": {
     "type": "git",

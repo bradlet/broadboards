@@ -166,6 +166,20 @@ app.get('/checkEmailExists/:email',(req, res) => {
     .catch(err => console.log(err))
 });
 
+// Grab active session's username
+app.get('/checkSession',(req, res) => {
+  if (req.session.user) {
+    console.log(req.session.user)
+    console.log(typeof(req.session.user))
+    // res.send(req.session.user);
+    data = {'user': req.session.user}
+    // console.log(data)
+    res.send(data);
+  }
+  else
+    res.send(null);
+});
+
 // POST route to check if the supplied password match actual password
 app.post('/checkPassword',(req, res) => {
   console.log('@ checkPassword')

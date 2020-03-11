@@ -107,14 +107,47 @@
         <!-- End of Primary Navigation Bar -->
         <!-- About Section -->
         <div class="about-container">
-          <p>
-            BroadBoards is a project brought together by three undergraduate
-            students from Portland State University. We took interest in the
-            idea of building a forum-thread based website from the ground up for
-            various reasons and hope to deliver a format that is refreshing
-            compared to the traditional stack frames that are often associated
-            with these sorts of things.
-          </p>
+          <div
+            class="col-md-6"
+            style="background-color:purple"
+            padding="1rem!important"
+          >
+            <p>
+              BroadBoards is a project brought together by three undergraduate
+              students from Portland State University. We took interest in the
+              idea of building a forum-thread based website from the ground up
+              for various reasons and hope to deliver a format that is
+              refreshing compared to the traditional stack frames that are often
+              associated with these sorts of things.
+            </p>
+          </div>
+          <div class="col-md-6" style="background-color:purple">
+            Some future frontend considerations
+            <ul>
+              <li>Make thread titles link to a discussion thread</li>
+              <li>Adding user group options in the sidebar skeleton</li>
+              <li>Implement a thread editing tool for posting content</li>
+            </ul>
+            Refactoring needs
+            <ul>
+              <li>
+                Add additional React components to replace most of the original
+                html
+              </li>
+              <li>Upgrade the existing CSS framework to a different style</li>
+              <li>Convert from CSS3 to either SCSS or SASS</li>
+            </ul>
+            Some future backend considerations
+            <ul>
+              <li>Add a many-to-many group for users to post threads on</li>
+              <li>
+                Add queries to sort the thread feed based on predefined
+                preferences
+              </li>
+              <li>Add a profile table for storing user settings</li>
+            </ul>
+          </div>
+
           <p></p>
         </div>
         <!-- End of about section -->

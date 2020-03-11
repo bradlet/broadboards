@@ -1,7 +1,8 @@
 import React from "react";
+import "./style.css";
 
 // API routes
-const postThreadAPI = '/postThread'
+const postThreadAPI = "/postThread";
 
 class NewThread extends React.Component {
   constructor(props) {
@@ -34,17 +35,21 @@ class NewThread extends React.Component {
         {this.state.NewThreadVisible && (
           <form action={postThreadAPI} method="POST">
             <div>
-              <input type="text" name="title" required/>
+              <input type="text" name="title" required />
               <label for="title">Title</label>
             </div>
             <div>
-              <textarea type="text" name="thread" required/>
+              <textarea
+                id="textbox"
+                type="text"
+                color="purple"
+                name="thread"
+                required
+              />
               <label for="thread">Thread</label>
             </div>
             <div>
-              <button type="submit">
-                Post it!
-              </button>
+              <button type="submit">Post it!</button>
             </div>
           </form>
         )}

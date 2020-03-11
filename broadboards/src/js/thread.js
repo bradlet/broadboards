@@ -45,7 +45,7 @@ class NewThread extends React.Component {
           this.node = node;
         }}
       >
-        <button onClick={this.handleClick}>Create a post</button>
+        <button onClick={this.handleClick}>Create a thread</button>
         {this.state.NewThreadVisible && (
           <form action={postThreadAPI} method="POST">
             <div>

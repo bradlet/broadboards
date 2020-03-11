@@ -20,20 +20,23 @@ class LoginArea extends React.Component {
         console.log("@fetchUserSession");
         const response = await fetch(checkSessionAPI);
         // console.log(response)
+        console.log(response)
         const body = await response.json();
         // console.log(body)
 
+        console.log(body)
         if (response.status !== 200) {
             throw Error(body.message)
         }
-        return body;
+        return body['user'];
     };
 
     componentDidMount() {
         this.fetchUserSession()
             .then(res => {
+                // console.log(res)
                 this.setState({user: res})
-                if (res.length > 0) {
+                if (res != null) {
                     this.setState({
                         loggedIn: true,
                     })
@@ -44,12 +47,14 @@ class LoginArea extends React.Component {
     }
 
     render() {
-        if (this.state.loggedIn){
+        if (this.state.loggedIn === true){
+            console.log('here')
             return (
                 <h4>Logged in as {this.state.user}</h4>
             );
         }
         else {
+            console.log('else')
             return (
                 <ul className="nav navbar-nav navbar-right">
                     <li>
@@ -67,3 +72,4 @@ class LoginArea extends React.Component {
 }
 
 export default LoginArea;
+

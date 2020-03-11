@@ -94,7 +94,7 @@ body {
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .navbar-form input[type="text"] {
+  #search-bar {
     width: 48vw !important;
   }
   #primary-header {
@@ -107,7 +107,7 @@ body {
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  .navbar-form input[type="text"] {
+  #search-bar {
     width: 55vw !important;
   }
   #primary-header {
@@ -120,7 +120,7 @@ body {
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  .navbar-form input[type="text"] {
+  #search-bar {
     width: 64vw !important;
   }
   #primary-header {

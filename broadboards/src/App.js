@@ -142,10 +142,11 @@ class App extends React.Component {
         >
           {this.state.threads.map((i, index) => (
             <div className="post" key={i}>
-              <p>Username: {this.state.usernames[index]}</p>
-              <p>Title: {this.state.titles[index]}
-                {'  '} Created: {this.state.timestamps[index]}</p>
-              <p>{this.state.threads[index]}</p>
+              <h4 className='infoText'>Username: {this.state.usernames[index]}
+              {<br/>} {<br/>}
+                  Title: {this.state.titles[index]}
+                  {'  '} Created: {this.state.timestamps[index]}</h4>
+              <p className='postText'>{this.state.threads[index]}</p>
             </div>
           ))}
         </InfiniteScroll>

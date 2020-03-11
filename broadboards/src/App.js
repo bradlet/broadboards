@@ -56,15 +56,18 @@ class App extends React.Component {
   };
 
   filterTitles = (obj) => {
-    return obj.map(entry => entry['title'].replace(/\s+$/, ''))
+    // return obj.map(entry => entry['title'].replace(/\s+$/, ''))
+    return obj.map(entry => entry['title'])
   };
 
   filterTimestamps = (obj) => {
-    return obj.map(entry => entry['created'].replace(/\s+$/, ''))
+    // return obj.map(entry => entry['created'].replace(/\s+$/, ''))
+    return obj.map(entry => entry['created'])
   };
 
   filterThreads = (obj) => {
-    return obj.map(entry => entry['content'].replace(/\s+$/, ''))
+    // return obj.map(entry => entry['content'].replace(/\s+$/, ''))
+    return obj.map(entry => entry['content'])
   };
 
   componentDidMount() {

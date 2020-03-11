@@ -44,23 +44,27 @@
   background-color: grey;
 }
 
-/* Medium devices (tablets, 768px and up) */
+
+/* Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .post {
     height: 20vh;
   }
 }
+*/
 
-/* Large devices (desktops, 992px and up) */
+/* Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   .post {
     height: 15vh;
   }
 }
+*/
 
-/* Extra large devices (large desktops, 1200px and up) */
+/* Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   .post {
     height: 10vh;
   }
 }
+*/

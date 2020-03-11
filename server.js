@@ -1,11 +1,19 @@
+/*
+  FILENAME: server.js
+  PURPOSE:
+    Node express server that handles the serving of client/build/ files
+    as well as serving HTTP requests
+*/
+
+// required dependencies
 const express = require('express');
 const session = require('express-session');
 const encryptPW = require('./account_control.js');
+const { Pool, Client } = require('pg')
+const path = require('path')
 
 const app = express();
 const port = process.env.PORT || 5000;
-const { Pool, Client } = require('pg')
-const path = require('path')
 
 const client = new Client({
   user: 'test',
@@ -19,9 +27,13 @@ client.connect()
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
+// serve react static files
 app.use(express.static(path.join(__dirname, 'broadboards/build')))
+
+// required for parsing req/res body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
+
 app.use(session({
     secret: process.env.SECRET || "DEFAULTSECRETYOUSHOULDSETASECRET",
     resave: false,

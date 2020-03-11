@@ -1,6 +1,10 @@
-// This react component will show the login and signup
-// buttons if not logged in, or, will notify the user
-// that they are logged in.
+/*
+  FILENAME: loginArea.js
+  PURPOSE:
+    JavaScript file that uses React to show the login and signup
+    buttons if not logged in, or, will notify the user
+    that they are logged in.
+*/
 
 import React from "react";
 
@@ -8,6 +12,7 @@ import React from "react";
 const checkSessionAPI = '/checkSession'
 
 class LoginArea extends React.Component {
+    // default state: no user logged in yet
     constructor(props) {
         super(props);
         this.state = {
@@ -16,6 +21,8 @@ class LoginArea extends React.Component {
         };
     }
 
+    // fetches user session from the API to determine
+    // if client user has logged into an account
     fetchUserSession = async() => {
         console.log("@fetchUserSession");
         const response = await fetch(checkSessionAPI);
@@ -31,6 +38,8 @@ class LoginArea extends React.Component {
         return body['user'];
     };
 
+    // once the component mounts (i.e renders on the screen)
+    // determine if the user is logged into an account
     componentDidMount() {
         this.fetchUserSession()
             .then(res => {
@@ -47,12 +56,14 @@ class LoginArea extends React.Component {
     }
 
     render() {
+        // if user logged in, display username
         if (this.state.loggedIn === true){
             console.log('here')
             return (
                 <h4>Logged in as {this.state.user}</h4>
             );
         }
+        // otherwise, display normal buttons
         else {
             console.log('else')
             return (

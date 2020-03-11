@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="img/bb.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="A social media solution to internet-based echo chambers."
+    />
+    <link rel="apple-touch-icon" href="img/bb.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>BroadBoards.net - echo-free social media</title>
+  </head>
+
+  <body id="body" class="light-mode">
+    <div id="full-page">
+      <div class="bg-blue-grad" id="content">
+        <!-- Primary Navigation Bar -->
+        <nav id="primary-header" class="navbar navbar-light">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button
+                type="button"
+                class="navbar-toggle"
+                data-toggle="collapse"
+                data-target="#myNavbar"
+              >
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/"
+                ><img id="logo" src="img/bb.png" width="50px" height="50px"
+              /></a>
+              <div id="brand-name">Broad Boards</div>
+            </div>
+            <div style="align-items:center; color:#0192C9">
+              <h1>About Us</h1>
+            </div>
+          </div>
+        </nav>
+        <!-- End of Primary Navigation Bar -->
+        <!-- About Section -->
+        <div class="about-container">
+          <div
+            class="col-md-6"
+            style="  background-color: #eff0f1"
+            padding="1rem!important"
+          >
+            <h1>Welcome to BroadBoards!</h1>
+            <p>
+              BroadBoards is a project brought together by three undergraduate
+              students from Portland State University. We took interest in the
+              idea of building a forum-thread based website from the ground up
+              for various reasons and hope to deliver a format that is
+              refreshing compared to the traditional stack frames that are often
+              associated with these sites.
+            </p>
+            <p>
+              We’ve now released the first iteration of the work which is
+              focused on creating a stable PERN stack for the site to build off.
+              Future development will expand the user experience by adding
+              features that are common place to social media sites and at some
+              point, begin to branch off in attempt to create something that is
+              unique.
+            </p>
+            <br />
+          </div>
+          <div class="col-md-6" style="  background-color: #eff0f1">
+            <br />
+            <h4>Some future frontend considerations</h4>
+            <ul>
+              <li>Making the title of threads link to a discussion thread</li>
+              <li>Adding user group options in the sidebar skeleton</li>
+              <li>Implementing a thread editing tool for posting content</li>
+            </ul>
+            <br />
+            <h4>Refactoring needs</h4>
+            <ul>
+              <li>
+                Add additional React components to replace most of the original
+                html
+              </li>
+              <li>Upgrade the existing CSS framework to a different style</li>
+              <li>Convert from CSS3 to either SCSS or SASS</li>
+            </ul>
+            <br />
+            <h4>Some future backend considerations</h4>
+            <ul>
+              <li>Add a many-to-many group for users to post threads on</li>
+              <li>
+                Add queries to sort the thread feed based on predefined
+                preferences
+              </li>
+              <li>Add a profile table for storing user settings</li>
+            </ul>
+          </div>
+
+          <p></p>
+        </div>
+        <!-- End of about section -->
+      </div>
+    </div>
+    <footer style="height:100px; text-align:center">
+      <br />Please feel free to reach out to us at
+      <h2>
+        <a
+          href="https://github.com/bradlet/broadboards"
+          class="fa fa-github fa-5x"
+        ></a>
+      </h2>
+    </footer>
+
+    <script src="js/bb.js"></script>
+  </body>
+</html>

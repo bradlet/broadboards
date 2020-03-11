@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const encryptPW = require('./account_control.js');
 
 const app = express();
@@ -19,12 +20,15 @@ client.connect()
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.use(express.static(path.join(__dirname, 'broadboards/build')))
-
-// built-in middleware function to parse req/res
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true}));
+app.use(session({
+    secret: process.env.SECRET || "DEFAULTSECRETYOUSHOULDSETASECRET",
+    resave: false,
+    saveUninitialized: true,
+}));
 
+// Root == Home page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/broadboards/build/index.html'))
 })
@@ -97,15 +101,19 @@ app.get('/getRollingThreads/:numOfThreads/:totalThreads/:skipThreads', (req, res
 app.post('/postThread', (req, res) => {
   console.log('@ postThread')
   // console.log(req.body)
-
+  if (!req.session.user) {
+    res.redirect(401, '/'); //401 == unauthorized access
+    return;
+  }
   title = req.body.title
   content = req.body.thread
   created = new Date().toISOString()
-  username = req.body.user
+  username = req.session.user
 
   query = 'INSERT INTO "BroadBoards".thread (title, content, created, username) ' +
   'VALUES ($1, $2, $3, $4)';
   values = [title, content, created, username]
+  console.log(values);
 
   client
     .query(query, values)
@@ -175,6 +183,7 @@ app.post('/checkPassword',(req, res) => {
       results = results.rows
       console.log(results.length);
       if (results.length != 0 && encryptPW.checkPW(suppliedPassword, results[0]['password'])) {
+        req.session.user = suppliedUsername;
         res.redirect('/');
       }
       else {

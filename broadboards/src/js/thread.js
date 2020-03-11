@@ -34,10 +34,6 @@ class NewThread extends React.Component {
         {this.state.NewThreadVisible && (
           <form action={postThreadAPI} method="POST">
             <div>
-              <input type="text" name="user" required/>
-              <label for="user">User</label>
-            </div>
-            <div>
               <input type="text" name="title" required/>
               <label for="title">Title</label>
             </div>

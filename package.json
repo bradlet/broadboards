@@ -10,10 +10,12 @@
     "pg": "^7.18.2"
   },
   "devDependencies": {
-    "jest": "^25.1.0"
+    "jest": "^24.9.0"
   },
   "jest": {
-    "testPathIgnorePatterns": ["src"]
+    "testPathIgnorePatterns": [
+      "src"
+    ]
   },
   "scripts": {
     "test": "jest",

@@ -92,4 +92,7 @@ describe('database connection and tables existence', () => {
        "AND    table_name = 'post');"
     client.query(query, callback)
   });
+  afterAll(() => {
+    return client.end();
+  })
 });

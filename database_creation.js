@@ -17,14 +17,14 @@ const client = new Client({
 client.connect()
 
 // create broadboards schema
-const schema = 'CREATE SCHEMA "broadboards"';
+const schema = 'CREATE SCHEMA "BroadBoards"';
 client
 	.query(schema)
 	.then(res => console.log(res))
 	.catch(err => console.log(err))
 
 // create user table
-const createUserTable = 'CREATE TABLE "broadboards".user (' +
+const createUserTable = 'CREATE TABLE "BroadBoards".user (' +
 		'username VARCHAR(20) PRIMARY KEY, joined timestamp, ' +
 		'email VARCHAR(64), password VARCHAR(100));'
 client
@@ -33,7 +33,7 @@ client
 	.catch(err => console.log(err))
 
 // create thread table
-const createThreadTable = 'CREATE TABLE "broadboards".thread (' +
+const createThreadTable = 'CREATE TABLE "BroadBoards".thread (' +
 		'id SERIAL PRIMARY KEY, title VARCHAR(250), ' +
 		'content VARCHAR, created timestamp, ' +
 		'username VARCHAR(20));'
@@ -43,7 +43,7 @@ client
 	.catch(err => console.log(err))
 
 // create post table
-const createPostTable = 'CREATE TABLE "broadboards".post (' +
+const createPostTable = 'CREATE TABLE "BroadBoards".post (' +
 		'id SERIAL PRIMARY KEY, response VARCHAR, ' +
 		'created timestamp, thread_id int, ' +
 		'username VARCHAR(20));'
@@ -54,25 +54,25 @@ client
 
 // alter username column in thread table to be a foreign
 // key to username column in user table
-const alterThreadTableUsername = 'ALTER TABLE "broadboards".thread ' +
+const alterThreadTableUsername = 'ALTER TABLE "BroadBoards".thread ' +
 		'ADD FOREIGN KEY ("username") ' +
-		'REFERENCES "broadboards".user ("username");'
+		'REFERENCES "BroadBoards".user ("username");'
 client
 	.query(alterThreadTableUsername)
 	.then(res => console.log(res))
 	.catch(err => console.log(err))
 
-const alterPostTableUsername = 'ALTER TABLE "broadboards".post ' +
+const alterPostTableUsername = 'ALTER TABLE "BroadBoards".post ' +
 		'ADD FOREIGN KEY ("username") ' +
-		'REFERENCES "broadboards".user ("username");'
+		'REFERENCES "BroadBoards".user ("username");'
 client
 	.query(alterPostTableUsername)
 	.then(res => console.log(res))
 	.catch(err => console.log(err))
 
-const alterPostTableThread = 'ALTER TABLE "broadboards".post ' +
+const alterPostTableThread = 'ALTER TABLE "BroadBoards".post ' +
 		'ADD FOREIGN KEY ("thread_id") ' +
-		'REFERENCES "broadboards".thread ("id");'
+		'REFERENCES "BroadBoards".thread ("id");'
 client
 	.query(alterPostTableThread)
 	.then(res => {

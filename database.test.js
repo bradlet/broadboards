@@ -16,3 +16,17 @@ const client = new Client({
   password: '12345678',
   port: 5432,
 })
+
+describe('database connection and tables existence', () => {
+	it('connection established with database', done => {
+    let callback = (err, res) => {
+      try {
+        expect(err).toBe(null);
+        done();
+      } catch(err) {
+        done(err);
+      }
+    };
+    client.connect(callback)
+	});
+});

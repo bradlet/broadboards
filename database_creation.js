@@ -52,3 +52,31 @@ client
 	.then(res => console.log(res))
 	.catch(err => console.log(err))
 
+// alter username column in thread table to be a foreign
+// key to username column in user table
+const alterThreadTableUsername = 'ALTER TABLE "broadboards".thread ' +
+		'ADD FOREIGN KEY ("username") ' +
+		'REFERENCES "broadboards".user ("username");'
+client
+	.query(alterThreadTableUsername)
+	.then(res => console.log(res))
+	.catch(err => console.log(err))
+
+const alterPostTableUsername = 'ALTER TABLE "broadboards".post ' +
+		'ADD FOREIGN KEY ("username") ' +
+		'REFERENCES "broadboards".user ("username");'
+client
+	.query(alterPostTableUsername)
+	.then(res => console.log(res))
+	.catch(err => console.log(err))
+
+const alterPostTableThread = 'ALTER TABLE "broadboards".post ' +
+		'ADD FOREIGN KEY ("thread_id") ' +
+		'REFERENCES "broadboards".thread ("id");'
+client
+	.query(alterPostTableThread)
+	.then(res => {
+		console.log(res)
+		client.end()
+	})
+	.catch(err => console.log(err))

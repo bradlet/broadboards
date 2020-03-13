@@ -29,4 +29,19 @@ describe('database connection and tables existence', () => {
     };
     client.connect(callback)
 	});
+  it('database has BroadBoards schema', done => {
+    let callback = (err, res) => {
+      try {
+        expect(res.rows[0]['exists']).toBe(true);
+        done();
+      } catch(err) {
+        done(err);
+      }
+    };
+    query = "SELECT EXISTS ( " +
+       "SELECT 1 "+
+       "FROM   information_schema.tables " +
+       "WHERE  table_schema = 'BroadBoards');"
+    client.query(query, callback)
+  });
 });
